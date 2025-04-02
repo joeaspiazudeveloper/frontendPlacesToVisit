@@ -43,12 +43,7 @@ export default function PlacesList() {
 
     return (
         <>
-            <div className="add-place">
-                <button>
-                    <Link to="/addplace">Add Place</Link>
-                </button>
-            </div>
-            <h1>Places to Visit in Ecuador</h1>
+            <h3>Places to Visit in Ecuador</h3>
             <div className="place-list">
                 {
                     loading ? (

@@ -1,0 +1,145 @@
+/* index.css */
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+        monospace;
+}
+
+/* app.css*/
+
+.app {
+    height: 100vh;
+    padding: 0 100px;
+}
+
+/* List of places */
+
+.place-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.place {
+    background-color: #e8e7fb;
+    border-radius: 10px;
+    text-align: center;
+    padding-bottom: 10px;
+
+    display: flex;
+    flex-direction: column;
+
+    h2, p {
+        padding-left: 15px;
+        text-align: left;
+    }
+
+    .city {
+        display: flex;
+        justify-content: right;
+        padding-right: 10px;
+        align-items: center;
+        
+        span {
+            margin-left: 5px;
+        }
+    }
+
+    .actions {
+        margin-top: 10px;
+        .delete {
+            margin-right: 5px;
+        }
+    } 
+    
+    
+}
+
+@media (max-width: 1000px) {
+    .place-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 840px) {
+    .place-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+.place img {
+    width: 100%;
+    height: 200px;
+}
+
+button {
+    background: #5e5ecc;
+    color: #f1f1f1;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.place-body {
+    height: 150px;
+}
+
+
+.add-place {
+    display: flex;
+    justify-content: flex-end;
+    margin: 15px 0;
+}
+
+/* Form update or add */
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+
+    input {
+      width: 250px;
+      padding: 10px;
+      border: 1px solid gray;
+    }
+
+    textarea {
+      padding: 10px;
+    }
+
+    .form-field {
+        display: flex;
+        flex-direction: column;
+        label {
+            font-weight: 600;
+            padding-bottom: 5px;
+        }
+    }
+}
+
+/* remove underlined color from links a */
+
+a {
+    color: inherit; /* Hereda el color del texto del contenedor padre */
+    text-decoration: none; /* Elimina el subrayado */
+  }
+  
+  a:hover {
+    color: inherit; /* Mantiene el color al pasar el ratón por encima */
+    text-decoration: underline; /* Opcional: subraya el enlace al pasar el ratón por encima */
+  }
+  
+  a:visited {
+    color: inherit; /* Mantiene el color después de visitar el enlace */
+  }
