@@ -5,12 +5,14 @@ import "../index.css";
 
 export default function PlacesList() {
     // const apiUrl = "https://backendplacetovisitecuador.onrender.com/places/";
-    // const apiUrl = "http://localhost:8080/places/";
+    // const apiUrl = "http://localhost:8080/place/";
 
     const apiUrl = import.meta.env.VITE_API_URL;
 
     const [places, setPlaces] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -19,9 +21,14 @@ export default function PlacesList() {
             const fetchPlaces = async () => {
                 try {
                     const response = await axios.get(apiUrl);
+                    if (response.data && !response.data.fatal) {
+                        setPlaces(response.data);
+                    } else {
+                        throw new Error("Invalid data received from API");
+                    }
                     setPlaces(response.data);
                 } catch (error) {
-                    console.log(error);
+                    console.log('Error getting data', [error]);
                 } finally {
                     setLoading(false);
                 }
@@ -44,6 +51,7 @@ export default function PlacesList() {
     return (
         <>
             <h3 className="title">Places to Visit in Ecuador</h3>
+            {error && <p className="error">{error}</p>}
             <div className="place-list">
                 {
                     loading ? (
