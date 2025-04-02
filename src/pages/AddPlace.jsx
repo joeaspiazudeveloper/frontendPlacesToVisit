@@ -3,7 +3,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 export default function AddPlace() {
-  const apiUrl = "https://backendplacetovisitecuador.onrender.com/places/"
+  // const apiUrl = "https://backendplacetovisitecuador.onrender.com/places/"
+  const apiUrl = "http://localhost:8080/places/";
 
   const [place, setPlace] = useState({
     title: "",
@@ -86,30 +87,30 @@ export default function AddPlace() {
       <div className="form-field">
         <label htmlFor="title">Title: </label>
         <input type="text" placeholder='Title' onChange={handleChange}  name= 'title' 
-          value={place.title} />
+          value={place.title} required/>
       </div>
       <div className="form-field">
         <label htmlFor="description">Description: </label>
         <input type="text" placeholder='Description' onChange={handleChange} name='description' 
-          value={place.description} />
+          value={place.description} required />
       </div>
 
       <div className="form-field">
         <label htmlFor="mapsUrl">Maps Url: </label>
         <input type="text" placeholder='Maps URL' onChange={handleChange} name='mapsUrl' 
-          value={place.mapsUrl} />
+          value={place.mapsUrl} required/>
       </div>
 
       <div className="form-field">
         <label htmlFor="imageUrl">Image Url: </label>
         <input type="text" placeholder='Image URL' onChange={handleChange} name='imageUrl' 
-          value={place.imageUrl} />
+          value={place.imageUrl} required/>
       </div>
 
       <div className="form-field">
         <label htmlFor="city">City: </label>
         <input type="text" placeholder='City' onChange={handleChange} name='city' 
-          value={place.city} />
+          value={place.city} required/>
       </div>
 
       <button onClick={handleClick}>{titleAddEdit} Place</button>
