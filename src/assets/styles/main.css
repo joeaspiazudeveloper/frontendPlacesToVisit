@@ -17,7 +17,6 @@ code {
 
 .app {
     height: 100vh;
-    padding: 0 100px;
 }
 
 /* List of places */
@@ -26,6 +25,11 @@ code {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+    padding: 0 100px;
+}
+
+.title {
+    padding: 0 100px;
 }
 
 .place {
@@ -96,11 +100,17 @@ button {
 
 .add-place {
     display: flex;
-    justify-content: flex-end;
-    margin: 15px 0;
+    flex-direction: column;
 }
 
 /* Form update or add */
+
+.back-button {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    margin-right: 13rem;
+}
 
 .form {
     display: flex;

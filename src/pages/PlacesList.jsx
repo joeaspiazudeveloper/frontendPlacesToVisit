@@ -26,9 +26,9 @@ export default function PlacesList() {
                     setLoading(false);
                 }
             };
-            fetchPlaces();    
+            fetchPlaces();
         }, 2000)
-        
+
     }, []);
 
     const handleDelete = async (placeId) => {
@@ -43,48 +43,49 @@ export default function PlacesList() {
 
     return (
         <>
-            <h3>Places to Visit in Ecuador</h3>
+            <h3 className="title">Places to Visit in Ecuador</h3>
             <div className="place-list">
                 {
                     loading ? (
                         <p>Loading...</p>
                     ) :
-                    (places.length === 0 && !loading) ? (
-                        <p>No places found</p>
-                    ) : (
-                        places.map((place) => (
-                            <div className="place" key={place.id}>
-                                <img src={place.imageUrl} alt={place.name} />
-                                <div className="place-body">
-                                    <h2>{place.title}</h2>
-                                    <p>{place.description}</p>
+                        (places.length === 0 && !loading) ? (
+                            <p>No places found</p>
+                        ) : (
+                            places.map((place) => (
+                                <div className="place" key={place.id}>
+                                    <img src={place.imageUrl} alt={place.name} />
+                                    <div className="place-body">
+                                        <h2>{place.title}</h2>
+                                        <p>{place.description}</p>
+                                    </div>
+                                    <div className="city">
+                                        <Link
+                                            to={`https://${place.mapsUrl}`}
+                                            target="_blank"
+                                            rel="link maps"
+                                        >
+                                            <i className="fas fa-location-dot"></i>
+                                        </Link>
+                                        <span>{place.city}</span>
+                                    </div>
+                                    <div className="actions">
+                                        <button
+                                            className="delete"
+                                            onClick={() => handleDelete(place.id)}
+                                        >
+                                            Remove
+                                        </button>
+                                        <button className="update">
+                                            <Link to={`/addplace/${place.id}`}>Update</Link>
+                                        </button>
+                                    </div>
                                 </div>
-                                <div className="city">
-                                    <Link
-                                        to={`https://${place.mapsUrl}`}
-                                        target="_blank"
-                                        rel="link maps"
-                                    >
-                                        <i className="fas fa-location-dot"></i>
-                                    </Link>
-                                    <span>{place.city}</span>
-                                </div>
-                                <div className="actions">
-                                    <button
-                                        className="delete"
-                                        onClick={() => handleDelete(place.id)}
-                                    >
-                                        Remove
-                                    </button>
-                                    <button className="update">
-                                        <Link to={`/addplace/${place.id}`}>Update</Link>
-                                    </button>
-                                </div>
-                            </div>
-                        ))
-                    )
+                            ))
+                        )
                 }
             </div>
         </>
+
     );
 }
