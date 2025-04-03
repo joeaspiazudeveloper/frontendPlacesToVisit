@@ -34,25 +34,25 @@ export default function PlacesList() {
     }, []);
 
     // reload after edit or update
-    useEffect(() => {
-        const fetchPlaces = async () => {
-            try {
-                const response = await axios.get(apiUrl);
-                if (response.data && !response.data.fatal) {
-                    setPlaces(response.data);
-                } else {
-                    throw new Error("Invalid data received from API");
-                }
-                setPlaces(response.data);
-            } catch (error) {
-                console.log('Error getting data', [error]);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchPlaces();
+    // useEffect(() => {
+    //     const fetchPlaces = async () => {
+    //         try {
+    //             const response = await axios.get(apiUrl);
+    //             if (response.data && !response.data.fatal) {
+    //                 setPlaces(response.data);
+    //             } else {
+    //                 throw new Error("Invalid data received from API");
+    //             }
+    //             setPlaces(response.data);
+    //         } catch (error) {
+    //             console.log('Error getting data', [error]);
+    //         } finally {
+    //             setLoading(false);
+    //         }
+    //     };
+    //     fetchPlaces();
 
-    }, [apiUrl]);
+    // }, [apiUrl]);
 
     const handleDelete = async (placeId) => {
         try {
