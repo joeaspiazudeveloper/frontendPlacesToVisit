@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 export default function AddPlace() {
-  // const apiUrl = "https://backendplacetovisitecuador.onrender.com/places/"
-  const apiUrl = "http://localhost:8080/places/";
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   const [place, setPlace] = useState({
     title: "",

@@ -4,9 +4,7 @@ import axios from "axios";
 import "../index.css";
 
 export default function PlacesList() {
-    // const apiUrl = "https://backendplacetovisitecuador.onrender.com/places/";
-    // const apiUrl = "http://localhost:8080/place/";
-
+    
     const apiUrl = import.meta.env.VITE_API_URL;
 
     const [places, setPlaces] = useState([]);
