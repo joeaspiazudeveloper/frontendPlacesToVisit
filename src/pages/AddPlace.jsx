@@ -60,7 +60,6 @@ export default function AddPlace() {
   const handleClick = async e => {
     e.preventDefault();
     if (titleAddEdit === 'Edit') {
-      console.log('edit place', id);
       try {
         await axios.put(apiUrl + id, place);
         navigate("/");
@@ -70,7 +69,6 @@ export default function AddPlace() {
     }
     // Add place
     else {
-      console.log('Add place');
       try {
         await axios.post(apiUrl, place);
         navigate("/");
