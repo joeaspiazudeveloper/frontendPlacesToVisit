@@ -52,7 +52,7 @@ export default function PlacesList() {
                     loading ? (
                         <p>Loading...</p>
                     ) :
-                        (places.length === 0 && !loading) ? (
+                        (places.length === 0 && !loading && !error) ? (
                             <p>No places found</p>
                         ) : (
                             places.map((place) => (
