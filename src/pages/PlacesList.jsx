@@ -62,7 +62,13 @@ export default function PlacesList() {
                         ) : (
                             places.map((place) => (
                                 <div className="place" key={place.id}>
-                                    <img src={place.imageUrl} alt={place.name} />
+                                    <img src={'https://' + place.imageUrl} 
+                                        alt={place.name} 
+                                        onError={(e) => {
+                                            e.target.onerror = null;
+                                            e.target.src = "/images/malecon2000.jpg"; // Ruta a una imagen de respaldo
+                                        }}
+                                    />
                                     <div className="place-body">
                                         <h2>{place.title}</h2>
                                         <p>{place.description}</p>
