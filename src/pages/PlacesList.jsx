@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../index.css";
+import placeData from "../data/places.json";
 
 export default function PlacesList() {
 
     const apiUrl = import.meta.env.VITE_API_URL;
+    const placeListDemo = placeData
 
     const [places, setPlaces] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -20,11 +22,13 @@ export default function PlacesList() {
                 if (response.data && !response.data.fatal) {
                     setPlaces(response.data);
                 } else {
+                    setPlaces(placeListDemo);
                     throw new Error("Invalid data received from API");
                 }
             } catch (error) {
                 console.error("Error getting data:", error);
                 setError("Failed to load places. Please try again later.");
+                setPlaces(placeListDemo);
             } finally {
                 setLoading(false);
             }
@@ -46,13 +50,14 @@ export default function PlacesList() {
     return (
         <>
             <h3 className="title">Places to Visit in Ecuador</h3>
-            {error && <p className="error">{error}</p>}
+            { error && (<p className="error">{error} Showing Demo Data</p>) }
+            
             <div className="place-list">
                 {
                     loading ? (
                         <p>Loading...</p>
                     ) :
-                        (places.length === 0 && !loading && !error) ? (
+                        (places.length === 0 && !loading) ? (
                             <p>No places found</p>
                         ) : (
                             places.map((place) => (

@@ -1,0 +1,34 @@
+[
+    {
+        "id": 1,
+        "title": "Malecon 2000",
+        "description": "Lugar de Guayaquil al borde de la ciudad en el rio Guayas",
+        "mapsUrl": "www.asdasd.com",
+        "imageUrl": "https://imgs.search.brave.com/c3A9_w92cnpXlFSt_LJq3mNmCODK5MOQnqfwfkOBIQE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvNTA4/MDE1NTQ3L3Bob3Rv/L21hbGVjb24tMjAw/MC5qcGc_cz02MTJ4/NjEyJnc9MCZrPTIw/JmM9dGNtVFA2a3JC/R2pzRVo3Rld6eWZ1/eUxKQkpmejNaVjlS/M3hVV1l4dzNiOD0",
+        "city": "Guayaquil"
+    },
+    {
+        "id": 2,
+        "title": "Malecon del Salado",
+        "description": "Es un malecon cerca a la universidad de Guayaquil y editado",
+        "mapsUrl": "http://maps1.google.com",
+        "imageUrl": "maleconsalado.jpg",
+        "city": "Guayaquil"
+    },
+    {
+        "id": 4,
+        "title": "Las penias",
+        "description": "El gran barrio las penias",
+        "mapsUrl": "www.maps.google/3434343",
+        "imageUrl": "laspenas.jpg",
+        "city": "Guayaquil"
+    },
+    {
+        "id": 8,
+        "title": "Mitad del Mundo",
+        "description": "Bello lugar de Quito",
+        "mapsUrl": "www.maps.google/12345",
+        "imageUrl": "mitaddelmundo.jpg",
+        "city": "Quito"
+    }
+]
