@@ -4,7 +4,7 @@ import axios from "axios";
 import "../index.css";
 
 export default function PlacesList() {
-    
+
     const apiUrl = import.meta.env.VITE_API_URL;
 
     const [places, setPlaces] = useState([]);
@@ -14,27 +14,45 @@ export default function PlacesList() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // using setTimeOut for development purpose we can remove it
-        setTimeout(() => {
-            const fetchPlaces = async () => {
-                try {
-                    const response = await axios.get(apiUrl);
-                    if (response.data && !response.data.fatal) {
-                        setPlaces(response.data);
-                    } else {
-                        throw new Error("Invalid data received from API");
-                    }
+        const fetchPlaces = async () => {
+            try {
+                const response = await axios.get(apiUrl);
+                if (response.data && !response.data.fatal) {
                     setPlaces(response.data);
-                } catch (error) {
-                    console.log('Error getting data', [error]);
-                } finally {
-                    setLoading(false);
+                } else {
+                    throw new Error("Invalid data received from API");
                 }
-            };
-            fetchPlaces();
-        }, 2000)
+                setPlaces(response.data);
+            } catch (error) {
+                console.log('Error getting data', [error]);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchPlaces();
 
     }, []);
+
+    // reload after edit or update
+    useEffect(() => {
+        const fetchPlaces = async () => {
+            try {
+                const response = await axios.get(apiUrl);
+                if (response.data && !response.data.fatal) {
+                    setPlaces(response.data);
+                } else {
+                    throw new Error("Invalid data received from API");
+                }
+                setPlaces(response.data);
+            } catch (error) {
+                console.log('Error getting data', [error]);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchPlaces();
+
+    }, [apiUrl]);
 
     const handleDelete = async (placeId) => {
         try {
