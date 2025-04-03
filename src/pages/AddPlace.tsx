@@ -1,12 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+interface Place {
+  id?: number
+  title: string;
+  description: string;
+  mapsUrl: string;
+  imageUrl: string;
+  city: string;
+}
+
 export default function AddPlace() {
   const apiUrl = import.meta.env.VITE_API_URL;
 
-  const [place, setPlace] = useState({
+  const [place, setPlace] = useState<Place>({
     title: "",
     description: "",
     mapsUrl: "",
@@ -14,12 +23,11 @@ export default function AddPlace() {
     city: ""
   });
 
-  const [titleAddEdit, setTitleAddEdit] = useState('Add');
-  const [id, setId] = useState(0);
+  const [titleAddEdit, setTitleAddEdit] = useState<string>('Add');
+  const [id, setId] = useState<number>(0);
 
   const navigate = useNavigate();
   const location = useLocation();
-
 
   useEffect(() => {
     const queryId = location.pathname.split("/")[2];
@@ -33,14 +41,13 @@ export default function AddPlace() {
           const response = await axios.get(apiUrl);
           if (response) {
             const places = response.data;
-            const placeSearched = places.find(place => place.id === placeId);
+            const placeSearched = places.find((place: Place) => place.id === placeId);
             if (placeSearched) {
               setPlace(placeSearched);
             } else {
               console.warn('Place not found with id:', placeId);
             }
           }
-
         } catch (error) {
           console.error("Error fetching place data:", error);
         }
@@ -48,27 +55,22 @@ export default function AddPlace() {
 
       fetchPlaceData();
     }
-  }, [location.pathname])
+  }, [location.pathname]);
 
-
-
-
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPlace(prev => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
-  const handleClick = async e => {
+  const handleClick = async (e: React.FormEvent) => {
     e.preventDefault();
     if (titleAddEdit === 'Edit') {
       try {
-        await axios.put(apiUrl + id, place);
+        await axios.put(`${apiUrl}/${id}`, place);
         navigate("/");
       } catch (error) {
         console.log(error);
       }
-    }
-    // Add place
-    else {
+    } else {
       try {
         await axios.post(apiUrl, place);
         navigate("/");
@@ -76,7 +78,6 @@ export default function AddPlace() {
         console.log(error);
       }
     }
-
   }
 
   return (
@@ -98,29 +99,23 @@ export default function AddPlace() {
           <input type="text" placeholder='Description' onChange={handleChange} name='description'
             value={place.description} required />
         </div>
-
         <div className="form-field">
           <label htmlFor="mapsUrl">Maps Url: </label>
           <input type="text" placeholder='Maps URL' onChange={handleChange} name='mapsUrl'
             value={place.mapsUrl} required />
         </div>
-
         <div className="form-field">
           <label htmlFor="imageUrl">Image Url: </label>
           <input type="text" placeholder='Image URL' onChange={handleChange} name='imageUrl'
             value={place.imageUrl} required />
         </div>
-
         <div className="form-field">
           <label htmlFor="city">City: </label>
           <input type="text" placeholder='City' onChange={handleChange} name='city'
             value={place.city} required />
         </div>
-
         <button onClick={handleClick}>{titleAddEdit} Place</button>
-
       </div>
     </div>
-
-  )
+  );
 }

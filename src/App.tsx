@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import PlacesList from './pages/PlacesList';
 import AddPlace from './pages/AddPlace';
