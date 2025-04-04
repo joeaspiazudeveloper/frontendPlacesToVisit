@@ -48,7 +48,7 @@ export default function PlacesList() {
 
    return (
        <>
-           <h3 className="title">Places to Visit in Ecuador</h3>
+           <h3 className="title">Places to Visit</h3>
            {error && <p className="error">{error} Showing Demo Data</p>}
            <div className="place-list">
                {loading ? (
