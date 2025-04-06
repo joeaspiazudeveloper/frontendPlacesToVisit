@@ -25,6 +25,7 @@ export default function AddPlace() {
 
   const [titleAddEdit, setTitleAddEdit] = useState<string>('Add');
   const [id, setId] = useState<number>(0);
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -61,22 +62,44 @@ export default function AddPlace() {
     setPlace(prev => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
-  const handleClick = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (titleAddEdit === 'Edit') {
-      try {
-        await axios.put(`${apiUrl}/${id}`, place);
-        navigate("/");
-      } catch (error) {
-        console.log(error);
-      }
+
+    // Validación de errores
+    let validationErrors: { [key: string]: string } = {};
+
+    if (!place.title.trim()) {
+      validationErrors.title = "Title must not be empty.";
+    }
+    if (!place.description.trim()) {
+      validationErrors.description = "Description must not be empty.";
+    }
+    if (!place.mapsUrl.trim()) {
+      validationErrors.mapsUrl = "Maps URL must not be empty.";
+    }
+    if (!place.imageUrl.trim()) {
+      validationErrors.imageUrl = "Image URL must not be empty.";
+    }
+    if (!place.city.trim()) {
+      validationErrors.city = "City must not be empty.";
+    }
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
     } else {
       try {
-        await axios.post(apiUrl, place);
+        if (titleAddEdit === 'Edit') {
+          await axios.put(`${apiUrl}/${id}`, place);
+          console.log('edited success');
+        } else {
+          await axios.post(apiUrl, place);
+          console.log('Added success');
+        }
         navigate("/");
       } catch (error) {
-        console.log(error);
+        console.error("Error saving place data:", error);
       }
+      setErrors({}); // Limpiar errores previos
     }
   }
 
@@ -87,34 +110,71 @@ export default function AddPlace() {
           <button>Back</button>
         </Link>
       </div>
-      <div className='form'>
-        <h1>{titleAddEdit} Place</h1>
-        <div className="form-field">
-          <label htmlFor="title">Title: </label>
-          <input type="text" placeholder='Title' onChange={handleChange} name='title'
-            value={place.title} required />
-        </div>
-        <div className="form-field">
-          <label htmlFor="description">Description: </label>
-          <input type="text" placeholder='Description' onChange={handleChange} name='description'
-            value={place.description} required />
-        </div>
-        <div className="form-field">
-          <label htmlFor="mapsUrl">Maps Url: </label>
-          <input type="text" placeholder='Maps URL' onChange={handleChange} name='mapsUrl'
-            value={place.mapsUrl} required />
-        </div>
-        <div className="form-field">
-          <label htmlFor="imageUrl">Image Url: </label>
-          <input type="text" placeholder='Image URL' onChange={handleChange} name='imageUrl'
-            value={place.imageUrl} required />
-        </div>
-        <div className="form-field">
-          <label htmlFor="city">City: </label>
-          <input type="text" placeholder='City' onChange={handleChange} name='city'
-            value={place.city} required />
-        </div>
-        <button onClick={handleClick}>{titleAddEdit} Place</button>
+      <div className="form">
+        <form onSubmit={handleSubmit}>
+          <h1>{titleAddEdit} Place</h1>
+          <div className="form-field">
+            <label htmlFor="title">Title: </label>
+            <input
+              type="text"
+              placeholder="Title"
+              name="title"
+              value={place.title}
+              onChange={handleChange}
+              
+            />
+            { errors.title && <div className="error">{errors.title}</div> }
+          </div>
+          <div className="form-field">
+            <label htmlFor="description">Description: </label>
+            <input
+              type="text"
+              placeholder="Description"
+              name="description"
+              value={place.description}
+              onChange={handleChange}
+
+            />
+            { errors.description && <div className="error">{errors.description}</div> }
+          </div>
+          <div className="form-field">
+            <label htmlFor="mapsUrl">Maps Url: </label>
+            <input
+              type="text"
+              placeholder="Maps URL"
+              name="mapsUrl"
+              value={place.mapsUrl}
+              onChange={handleChange}
+      
+            />
+            { errors.mapsUrl && <div className="error">{errors.mapsUrl}</div> }
+          </div>
+          <div className="form-field">
+            <label htmlFor="imageUrl">Image Url: </label>
+            <input
+              type="text"
+              placeholder="Image URL"
+              name="imageUrl"
+              value={place.imageUrl}
+              onChange={handleChange}
+              
+            />
+            { errors.imageUrl && <div className="error">{errors.imageUrl}</div> }
+          </div>
+          <div className="form-field">
+            <label htmlFor="city">City: </label>
+            <input
+              type="text"
+              placeholder="City"
+              name="city"
+              value={place.city}
+              onChange={handleChange}
+              
+            />
+            { errors.city && <div className="error">{errors.city}</div> }
+          </div>
+          <button type="submit">{titleAddEdit} Place</button>
+        </form>
       </div>
     </div>
   );
