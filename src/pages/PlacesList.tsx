@@ -9,7 +9,7 @@ export default function PlacesList() {
    const apiUrl = import.meta.env.VITE_API_URL;
    const placeListDemo = placeData;
 
-   const [places, setPlaces] = useState<Array<{ id: number; title: string; description: string; imageUrl: string; mapsUrl: string; city: string }>>([]);
+   const [places, setPlaces] = useState<Array<{ _id: number; title: string; description: string; imageUrl: string; mapsUrl: string; city: string }>>([]);
    const [loading, setLoading] = useState(true);
    const [error, setError] = useState<string | null>(null);
 
@@ -39,7 +39,7 @@ export default function PlacesList() {
    const handleDelete = async (placeId: number) => {
        try {
            await axios.delete(`${apiUrl}/${placeId}`);
-           setPlaces(places.filter((place) => place.id !== placeId));
+           setPlaces(places.filter((place) => place._id !== placeId));
            navigate("/");
        } catch (error) {
            console.log(error);
@@ -57,7 +57,7 @@ export default function PlacesList() {
                    <p>No places found</p>
                ) : (
                    places.map((place) => (
-                       <div className="place" key={place.id}>
+                       <div className="place" key={place._id}>
                            <img
                                src={`https://${place.imageUrl}`}
                                alt={place.title}
@@ -77,11 +77,11 @@ export default function PlacesList() {
                                <span>{place.city}</span>
                            </div>
                            <div className="actions">
-                               <button className="delete" onClick={() => handleDelete(place.id)}>
+                               <button className="delete" onClick={() => handleDelete(place._id)}>
                                    Remove
                                </button>
                                <button className="update">
-                                   <Link to={`/addplace/${place.id}`}>Update</Link>
+                                   <Link to={`/addplace/${place._id}`}>Update</Link>
                                </button>
                            </div>
                        </div>

@@ -1,6 +1,6 @@
 [
     {
-        "id": 1,
+        "_id": 1,
         "title": "Malecon 2000",
         "description": "Lugar de Guayaquil al borde de la ciudad en el rio Guayas",
         "mapsUrl": "www.asdasd.com",
@@ -8,7 +8,7 @@
         "city": "Guayaquil"
     },
     {
-        "id": 2,
+        "_id": 2,
         "title": "Malecon del Salado",
         "description": "Es un malecon cerca a la universidad de Guayaquil y editado",
         "mapsUrl": "http://maps1.google.com",
@@ -16,7 +16,7 @@
         "city": "Guayaquil"
     },
     {
-        "id": 4,
+        "_id": 4,
         "title": "Las penias",
         "description": "El gran barrio las penias",
         "mapsUrl": "www.maps.google/3434343",
@@ -24,7 +24,7 @@
         "city": "Guayaquil"
     },
     {
-        "id": 8,
+        "_id": 8,
         "title": "Mitad del Mundo",
         "description": "Bello lugar de Quito",
         "mapsUrl": "www.maps.google/12345",

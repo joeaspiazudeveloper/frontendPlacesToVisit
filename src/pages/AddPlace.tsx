@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 interface Place {
-  id?: number
+  _id?: string
   title: string;
   description: string;
   mapsUrl: string;
@@ -24,7 +24,7 @@ export default function AddPlace() {
   });
 
   const [titleAddEdit, setTitleAddEdit] = useState<string>('Add');
-  const [id, setId] = useState<number>(0);
+  const [id, setId] = useState<string>("");
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   const navigate = useNavigate();
@@ -32,17 +32,17 @@ export default function AddPlace() {
 
   useEffect(() => {
     const queryId = location.pathname.split("/")[2];
-    const placeId = queryId ? parseInt(queryId, 10) : 0;
+    const placeId = queryId ? queryId : '0';
     setId(placeId);
 
-    if (placeId !== 0) {
+    if (placeId !== '0') {
       setTitleAddEdit('Edit');
       const fetchPlaceData = async () => {
         try {
           const response = await axios.get(apiUrl);
           if (response) {
             const places = response.data;
-            const placeSearched = places.find((place: Place) => place.id === placeId);
+            const placeSearched = places.find((place: Place) => place._id === placeId);
             if (placeSearched) {
               setPlace(placeSearched);
             } else {
@@ -90,16 +90,14 @@ export default function AddPlace() {
       try {
         if (titleAddEdit === 'Edit') {
           await axios.put(`${apiUrl}/${id}`, place);
-          console.log('edited success');
         } else {
           await axios.post(apiUrl, place);
-          console.log('Added success');
         }
         navigate("/");
       } catch (error) {
         console.error("Error saving place data:", error);
       }
-      setErrors({}); // Limpiar errores previos
+      setErrors({});
     }
   }
 
