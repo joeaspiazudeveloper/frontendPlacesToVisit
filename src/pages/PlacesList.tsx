@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { fetchPlaces } from "../hooks/FetchPlaces"; 
+import fetchPlaces from "../hooks/FetchPlaces";
 import "../index.scss";
 import axios from "axios";
 import PlaceItem from "../components/PlaceItem";
+import { Place } from "../types/PlaceType";
 
 export default function PlacesList() {
     
@@ -13,7 +14,7 @@ export default function PlacesList() {
     const handleDelete = async (placeId: string) => {
       try {
         await axios.delete(`${apiUrl}/${placeId}`);
-        setPlaces((prevPlaces: any) => prevPlaces.filter((place: any) => place._id !== placeId));
+        setPlaces((prevPlaces) => prevPlaces.filter((place: Place) => place._id !== placeId));
         navigate("/");
       } catch (error) {
         console.log(error);
@@ -30,7 +31,7 @@ export default function PlacesList() {
           {places.length === 0 ? (
             <p>No places found</p>
           ) : (
-            places.map((place: any) => <PlaceItem place={place} key={place._id} onDelete={handleDelete} />)
+            places.map((place: Place) => <PlaceItem place={place} key={place._id} onDelete={handleDelete} />)
           )}
         </div>
       </>
