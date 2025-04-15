@@ -26,6 +26,7 @@ code {
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     padding: 0 100px;
+    margin-top: 20px;
 }
 
 .title {
@@ -109,7 +110,6 @@ button {
     margin-top: 20px;
     display: flex;
     justify-content: center;
-    margin-right: 13rem;
 }
 
 .form {
@@ -157,4 +157,14 @@ a {
   
   a:visited {
     color: inherit; /* Mantiene el color después de visitar el enlace */
+  }
+
+ .place-detail-maincontent {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+
+    .back-button {
+        margin-bottom: 10px;
+    }
   }

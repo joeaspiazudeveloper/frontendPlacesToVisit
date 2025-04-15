@@ -1,18 +1,23 @@
 import { Link } from "react-router-dom";
 import { Place } from "../types/PlaceType";
 
-export default function PlaceItem({place, onDelete}: {place: Place, onDelete: (placeId: string) => void}) {
+export default function PlaceItem({place, onDelete, isDetail}: {place: Place, 
+    onDelete: (placeId: string) => void, isDetail: boolean}) { 
+
 
     return (
         <div className="place" key={place._id}>
-            <img
-                src={`https://${place.imageUrl}`}
-                alt={place.title}
-                onError={(e) => {
-                    e.currentTarget.onerror = null;
-                    e.currentTarget.src = "/images/malecon2000.jpg";
-                }}
-            />
+            <Link to={`/places/${place._id}`}>
+                <img
+                    src={`https://${place.imageUrl}`}
+                    alt={place.title}
+                    onError={(e) => {
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = "/images/malecon2000.jpg";
+                    }}
+                />
+            </Link>
+            
             <div className="place-body">
                 <h2>{place.title}</h2>
                 <p>{place.description}</p>
@@ -23,14 +28,16 @@ export default function PlaceItem({place, onDelete}: {place: Place, onDelete: (p
                 </Link>
                 <span>{place.city}</span>
             </div>
-            <div className="actions">
-                <button className="delete" onClick={() => onDelete(place._id ? place._id : '')}>
-                    Remove
-                </button>
-                <button className="update">
-                    <Link to={`/addplace/${place._id}`}>Update</Link>
-                </button>
-            </div>
+            { isDetail && 
+                <div className="actions">
+                    <button className="delete" onClick={() => onDelete(place._id ? place._id : '')}>
+                        Remove
+                    </button>
+                    <button className="update">
+                        <Link to={`/addplace/${place._id}`}>Update</Link>
+                    </button>
+                </div>
+            }
         </div>
     );
 }

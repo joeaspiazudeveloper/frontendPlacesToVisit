@@ -26,12 +26,11 @@ export default function PlacesList() {
   
     return (
       <>
-        <h3 className="title">Places to Visit</h3>
         <div className="place-list">
           {places.length === 0 ? (
             <p>No places found</p>
           ) : (
-            places.map((place: Place) => <PlaceItem place={place} key={place._id} onDelete={handleDelete} />)
+            places.map((place: Place) => <PlaceItem place={place} key={place._id} onDelete={handleDelete} isDetail={true}   />)
           )}
         </div>
       </>
