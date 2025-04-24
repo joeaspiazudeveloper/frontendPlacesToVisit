@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { Place } from '../types/PlaceType';
 import axios from 'axios';
+import { Place } from '../types/PlaceType';
 import PlaceItem from '../components/PlaceItem';
 
 function PlaceDetail() {

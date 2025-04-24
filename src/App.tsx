@@ -1,9 +1,10 @@
 import './App.scss';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import PlacesList from './pages/PlacesList';
-import AddPlace from './pages/AddPlace';
+import PlacesList from './features/places/pages/PlacesList';
+import PlaceDetail from './features/places/pages/PlaceDetail';
+import AddPlace from './features/places/pages/AddPlace';
 import Header from './components/header/Header';
-import PlaceDetail from './pages/PlaceDetail';
+
 
 function App() {
 

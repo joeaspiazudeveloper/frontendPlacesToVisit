@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Place } from "../types/PlaceType";
 
+
 export default function PlaceItem({place, onDelete, isDetail}: {place: Place, 
     onDelete: (placeId: string) => void, isDetail: boolean}) { 
 
