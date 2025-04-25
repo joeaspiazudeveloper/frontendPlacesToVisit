@@ -1,8 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import './assets/styles/main.scss';
+import '../styles/main.scss';
 import App from './App';
-import './App.scss'
 
 const rootElement = document.getElementById('root');
 
