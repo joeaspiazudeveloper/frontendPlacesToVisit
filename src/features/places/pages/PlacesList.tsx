@@ -3,6 +3,7 @@ import axios from "axios";
 import PlaceItem from "../components/PlaceItem";
 import { Place } from "../types/PlaceType";
 import  fetchPlaces  from "../hooks/FetchPlaces";
+import PlaceItemSkeleton from "../components/PlaceItemSkeleton";
 
 
 
@@ -22,7 +23,15 @@ export default function PlacesList() {
       }
     };
   
-    if (loading) return <p>Loading...</p>;
+    if (loading) {
+      return (
+        <div className="place-list">
+          {Array.from({ length: 3 }).map((_, index) => (
+            <PlaceItemSkeleton key={index} />
+          ))}
+        </div>
+      );
+    };
     if (error) return <p className="error">{error}</p>;
   
     return (

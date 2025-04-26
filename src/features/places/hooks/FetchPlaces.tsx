@@ -22,7 +22,11 @@ export default function FetchPlaces(apiUrl: string) {
         setLoading(false);
       }
     };
-    fetchPlaces();
+    setTimeout(() => {
+      fetchPlaces();
+    }, 2000);
+
+    // fetchPlaces();
   }, [apiUrl]);
 
   return { places, loading, error, setPlaces };
