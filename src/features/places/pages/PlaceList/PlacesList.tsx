@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import PlaceItem from "../components/PlaceItem";
-import { Place } from "../types/PlaceType";
-import  fetchPlaces  from "../hooks/FetchPlaces";
-import PlaceItemSkeleton from "../components/PlaceItemSkeleton";
-
+import { Place } from "../../types/PlaceType";
+import  fetchPlaces  from "../../hooks/FetchPlaces";
+import PlaceItemSkeleton from "../../components/PlaceItemSkeleton";
+import PlaceItem from "../../components/PlaceItem/PlaceItem";
+import "./PlaceList.scss";
 
 
 export default function PlacesList() {

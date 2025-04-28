@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import "./AddPlace.scss"
 
 interface Place {
   _id?: string
@@ -110,7 +111,7 @@ export default function AddPlace() {
       </div>
       <div className="form">
         <form onSubmit={handleSubmit}>
-          <h1>{titleAddEdit} Place</h1>
+          <h1 className='title'>{titleAddEdit} Place</h1>
           <div className="form-field">
             <label htmlFor="title">Title: </label>
             <input

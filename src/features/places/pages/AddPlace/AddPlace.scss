@@ -1,0 +1,49 @@
+.add-place {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Form update or add */
+
+.back-button {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.title {
+    font-size: 22px;
+    margin: 20px 0;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+
+    input {
+        width: 250px;
+        padding: 10px;
+        border: 1px solid gray;
+    }
+
+    textarea {
+        padding: 10px;
+    }
+
+    .form-field {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+
+        label {
+            font-weight: 600;
+            padding-bottom: 5px;
+        }
+    }
+
+    .error {
+        color: #FF6961;
+    }
+}

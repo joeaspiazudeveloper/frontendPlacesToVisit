@@ -1,7 +1,7 @@
 // pages
-export {default as PlaceDetail} from './pages/PlaceDetail';
-export {default as PlacesList} from './pages/PlacesList';
-export {default as AddPlace} from './pages/AddPlace';
+export {default as PlaceDetail} from './pages/PlaceDetail/PlaceDetail';
+export {default as PlacesList} from './pages/PlaceList/PlacesList';
+export {default as AddPlace} from './pages/AddPlace/AddPlace';
 
 // components
-export {default as PlaceItem} from './components/PlaceItem';
+export {default as PlaceItem} from './components/PlaceItem/PlaceItem';

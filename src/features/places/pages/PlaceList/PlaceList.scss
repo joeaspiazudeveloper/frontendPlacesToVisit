@@ -1,0 +1,33 @@
+.place-list-container {
+    margin: 10px 0;
+    .add-place-btn-content {
+        display: flex;
+        justify-content:flex-end;
+        margin-right: 6rem;
+        :hover {
+            cursor: pointer;
+        }
+    }
+}
+
+.place-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 0 100px;
+    margin-top: 20px;
+}
+
+
+@media (max-width: 1000px) {
+    .place-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 840px) {
+    .place-list {
+        grid-template-columns: 1fr;
+    }
+}
+
