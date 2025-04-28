@@ -5,6 +5,7 @@ import  fetchPlaces  from "../../hooks/FetchPlaces";
 import PlaceItemSkeleton from "../../components/PlaceItemSkeleton";
 import PlaceItem from "../../components/PlaceItem/PlaceItem";
 import "./PlaceList.scss";
+import SearchBar from "../../../SearchBar/components/SearchBar/SearchBar";
 
 
 export default function PlacesList() {
@@ -40,6 +41,10 @@ export default function PlacesList() {
   
     return (
       <div className="place-list-container">
+        
+        {/* SearchBar area for now only Places */}
+        <SearchBar />
+        
         <div className="add-place-btn-content">
           <button className="primary-button add-place-btn" onClick={ redirectAddPlace }>Add Place</button>
         </div>
