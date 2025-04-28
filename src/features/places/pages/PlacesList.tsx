@@ -22,6 +22,10 @@ export default function PlacesList() {
         console.log(error);
       }
     };
+
+    const redirectAddPlace = () => {
+      navigate("/addplace");
+    }
   
     if (loading) {
       return (
@@ -35,7 +39,10 @@ export default function PlacesList() {
     if (error) return <p className="error">{error}</p>;
   
     return (
-      <>
+      <div className="place-list-container">
+        <div className="add-place-btn-content">
+          <button className="primary-button add-place-btn" onClick={ redirectAddPlace }>Add Place</button>
+        </div>
         <div className="place-list">
           {places.length === 0 ? (
             <p>No places found</p>
@@ -43,6 +50,6 @@ export default function PlacesList() {
             places.map((place: Place) => <PlaceItem place={place} key={place._id} onDelete={handleDelete} isDetail={true}   />)
           )}
         </div>
-      </>
+      </div>
     );
 }

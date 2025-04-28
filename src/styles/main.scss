@@ -42,7 +42,8 @@ code {
     display: flex;
     flex-direction: column;
 
-    h2, p {
+    h2,
+    p {
         padding-left: 15px;
         text-align: left;
     }
@@ -52,7 +53,7 @@ code {
         justify-content: right;
         padding-right: 10px;
         align-items: center;
-        
+
         span {
             margin-left: 5px;
         }
@@ -60,12 +61,13 @@ code {
 
     .actions {
         margin-top: 10px;
+
         .delete {
             margin-right: 5px;
         }
-    } 
-    
-    
+    }
+
+
 }
 
 @media (max-width: 1000px) {
@@ -119,19 +121,20 @@ button {
     align-items: center;
 
     input {
-      width: 250px;
-      padding: 10px;
-      border: 1px solid gray;
+        width: 250px;
+        padding: 10px;
+        border: 1px solid gray;
     }
 
     textarea {
-      padding: 10px;
+        padding: 10px;
     }
 
     .form-field {
         display: flex;
         flex-direction: column;
         margin-bottom: 10px;
+
         label {
             font-weight: 600;
             padding-bottom: 5px;
@@ -146,20 +149,25 @@ button {
 /* remove underlined color from links a */
 
 a {
-    color: inherit; /* Hereda el color del texto del contenedor padre */
-    text-decoration: none; /* Elimina el subrayado */
-  }
-  
-  a:hover {
-    color: inherit; /* Mantiene el color al pasar el ratón por encima */
-    text-decoration: underline; /* Opcional: subraya el enlace al pasar el ratón por encima */
-  }
-  
-  a:visited {
-    color: inherit; /* Mantiene el color después de visitar el enlace */
-  }
+    color: inherit;
+    /* Hereda el color del texto del contenedor padre */
+    text-decoration: none;
+    /* Elimina el subrayado */
+}
 
- .place-detail-maincontent {
+a:hover {
+    color: inherit;
+    /* Mantiene el color al pasar el ratón por encima */
+    text-decoration: underline;
+    /* Opcional: subraya el enlace al pasar el ratón por encima */
+}
+
+a:visited {
+    color: inherit;
+    /* Mantiene el color después de visitar el enlace */
+}
+
+.place-detail-maincontent {
     display: flex;
     flex-direction: column;
     margin: 1rem;
@@ -167,4 +175,16 @@ a {
     .back-button {
         margin-bottom: 10px;
     }
-  }
+}
+
+.place-list-container {
+    margin: 10px 0;
+    .add-place-btn-content {
+        display: flex;
+        justify-content:flex-end;
+        margin-right: 6rem;
+        :hover {
+            cursor: pointer;
+        }
+    }
+}

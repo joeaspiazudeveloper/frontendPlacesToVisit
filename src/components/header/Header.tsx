@@ -7,10 +7,10 @@ export default function Header() {
         <h2>
           <Link to="/">Ecuador Travel</Link>
         </h2>
-        <div className="header-addplace">
-            <button>
-                <Link to="/addplace">Add Place</Link>
-            </button>
+        <div className="second-header">
+            
+                <h2>Places to visit in Ecuador</h2>
+            
         </div>
     </div>
   )
