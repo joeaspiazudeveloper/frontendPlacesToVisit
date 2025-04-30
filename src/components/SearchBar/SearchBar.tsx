@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import './SearchBar.scss';
-import { Place } from '../../../places/types/PlaceType';
+import { Place } from '../../features/places/types/PlaceType';
 import { Link } from 'react-router-dom';
 
 const mockSearchResults: Place[] = [

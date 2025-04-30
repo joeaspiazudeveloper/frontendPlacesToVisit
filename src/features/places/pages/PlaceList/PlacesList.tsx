@@ -5,7 +5,7 @@ import  fetchPlaces  from "../../hooks/FetchPlaces";
 import PlaceItemSkeleton from "../../components/PlaceItemSkeleton";
 import PlaceItem from "../../components/PlaceItem/PlaceItem";
 import "./PlaceList.scss";
-import SearchBar from "../../../SearchBar/components/SearchBar/SearchBar";
+import SearchBar from "../../../../components/SearchBar/SearchBar";
 
 
 export default function PlacesList() {
