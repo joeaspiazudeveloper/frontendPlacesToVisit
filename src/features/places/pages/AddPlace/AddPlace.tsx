@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import "./AddPlace.scss"
+import { usePlacesContext } from '../../contexts/PlacesContext';
 
 interface Place {
   _id?: string
@@ -27,6 +28,8 @@ export default function AddPlace() {
   const [titleAddEdit, setTitleAddEdit] = useState<string>('Add');
   const [id, setId] = useState<string>("");
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+
+  const { addPlace, updatePlace } = usePlacesContext();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -91,8 +94,10 @@ export default function AddPlace() {
       try {
         if (titleAddEdit === 'Edit') {
           await axios.put(`${apiUrl}/${id}`, place);
+          updatePlace(place);
         } else {
           await axios.post(apiUrl, place);
+          addPlace(place);
         }
         navigate("/");
       } catch (error) {

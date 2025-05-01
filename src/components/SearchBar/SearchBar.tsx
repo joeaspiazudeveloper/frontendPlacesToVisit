@@ -3,23 +3,15 @@ import './SearchBar.scss';
 import { Place } from '../../features/places/types/PlaceType';
 import { Link } from 'react-router-dom';
 
-const mockSearchResults: Place[] = [
-    { _id: '67f53a0f1dd2a70673bbb76e', title: 'Ruinas de Ingapirca', description: 'Cuenca', mapsUrl: 'https://www.google.com', imageUrl: 'https://www.google.com', city: 'Cuenca' },
-    { _id: '67f53aca1dd2a70673bbb779', title: 'Mitad del Mundo', description: 'Quito', mapsUrl: 'https://www.google.com', imageUrl: 'https://www.google.com', city: 'Quito' },
-    { _id: '67fed974e5ab435508038682', title: 'Malecon 2000', description: 'Guayaquil', mapsUrl: 'https://www.google.com', imageUrl: 'https://www.google.com', city: 'Guayaquil' },
-    { _id: '4', title: 'Playa el Murcielago', description: 'Manta', mapsUrl: 'https://www.google.com', imageUrl: 'https://www.google.com', city: 'Manta' },
-    { _id: '5', title: 'Catedral de Ambato', description: 'Ambato', mapsUrl: 'https://www.google.com', imageUrl: 'https://www.google.com', city: 'Ambato' },
-];
-
-const SearchBar = () => {
+const SearchBar = (  { places }: { places: Place[] }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState<Place[]>([]);
     const [isOpen, setIsOpen] = useState(false);
-
+    
 
     useEffect(() => {
         if (searchTerm.trim().length > 2) {
-            const filteredResults = mockSearchResults.filter((result) =>
+            const filteredResults = places.filter((result) =>
                 result.title.toLowerCase().includes(searchTerm.toLowerCase())
             );
             setSearchResults(filteredResults);
