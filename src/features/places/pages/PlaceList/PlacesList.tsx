@@ -7,23 +7,27 @@ import "./PlaceList.scss";
 import { usePlacesContext } from "../../contexts/PlacesContext";
 import SearchBar from "../../../../components/SearchBar/SearchBar";
 import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 
 export default function PlacesList() {
     
     const apiUrl = import.meta.env.VITE_API_URL;
-    const { places, loading, error, removePlace } = usePlacesContext()
+    const { places, loading, error, removePlace, refetchPlaces } = usePlacesContext()
     const navigate = useNavigate();
 
-    useEffect(() => {
-      // console.log('Lista de places desde el Context:', places);
-    }, [places]);
-
     const handleDelete = async (placeId: string) => {
+      // Add confirmation before deleting
+      if (!window.confirm("Estas seguro que deseas eliminar este lugar turistico?")) {
+        return;
+      }
+
       try {
         await axios.delete(`${apiUrl}/${placeId}`);
         removePlace(placeId);
+        toast.warn("Lugar turistico eliminado.");
         navigate("/");
+        refetchPlaces();
       } catch (error) {
         console.log(error);
       }
@@ -51,7 +55,7 @@ export default function PlacesList() {
         <SearchBar places={places} />
 
         <div className="add-place-btn-content">
-          <button className="primary-button add-place-btn" onClick={redirectAddPlace}>Add Place</button>
+          <button className="primary-button add-place-btn" onClick={redirectAddPlace}>Agregar Lugar Turistico</button>
         </div>
 
         <div className="place-list">

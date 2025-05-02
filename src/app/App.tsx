@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from '../components/header/Header';
 import routes from '../routing/routes';
 import { PlacesProvider } from '../features/places/contexts/PlacesContext';
+import { ToastContainer } from 'react-toastify';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
               />
             ))}
           </Routes>
+          <ToastContainer />
         </PlacesProvider>
       </BrowserRouter>
     </div>

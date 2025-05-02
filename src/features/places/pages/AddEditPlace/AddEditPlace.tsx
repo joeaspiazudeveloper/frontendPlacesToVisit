@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import "./AddPlace.scss"
+import "./AddEditPlace.scss"
 import { usePlacesContext } from '../../contexts/PlacesContext';
+import { toast } from 'react-toastify';
 
 interface Place {
   _id?: string
@@ -29,7 +30,7 @@ export default function AddPlace() {
   const [id, setId] = useState<string>("");
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
-  const { addPlace, updatePlace } = usePlacesContext();
+  const { addPlace, updatePlace, refetchPlaces } = usePlacesContext();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -95,9 +96,12 @@ export default function AddPlace() {
         if (titleAddEdit === 'Edit') {
           await axios.put(`${apiUrl}/${id}`, place);
           updatePlace(place);
+          toast.success("Lugar turistico actualizado.");
         } else {
           await axios.post(apiUrl, place);
           addPlace(place);
+          refetchPlaces();
+          toast.success("Lugar turistico creado.");
         }
         navigate("/");
       } catch (error) {

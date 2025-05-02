@@ -32,10 +32,10 @@ export default function PlaceItem({place, onDelete, isDetail}: {place: Place,
             { isDetail && 
                 <div className="actions">
                     <button className="delete" onClick={() => onDelete(place._id ? place._id : '')}>
-                        Remove
+                        Eliminar
                     </button>
                     <button className="update">
-                        <Link to={`/addplace/${place._id}`}>Update</Link>
+                        <Link to={`/addplace/${place._id}`}>Actualizar</Link>
                     </button>
                 </div>
             }
