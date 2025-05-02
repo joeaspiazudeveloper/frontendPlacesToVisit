@@ -29,6 +29,7 @@ export default function PlacesList() {
         navigate("/");
         refetchPlaces();
       } catch (error) {
+        toast.error("Error al eliminar el lugar turistico.");
         console.log(error);
       }
     };

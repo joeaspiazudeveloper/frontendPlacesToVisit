@@ -5,15 +5,7 @@ import axios from 'axios';
 import "./AddEditPlace.scss"
 import { usePlacesContext } from '../../contexts/PlacesContext';
 import { toast } from 'react-toastify';
-
-interface Place {
-  _id?: string
-  title: string;
-  description: string;
-  mapsUrl: string;
-  imageUrl: string;
-  city: string;
-}
+import { Place } from '../../types/PlaceType';
 
 export default function AddPlace() {
   const apiUrl = import.meta.env.VITE_API_URL;
@@ -26,7 +18,7 @@ export default function AddPlace() {
     city: ""
   });
 
-  const [titleAddEdit, setTitleAddEdit] = useState<string>('Add');
+  const [titleAddEdit, setTitleAddEdit] = useState<string>('Agregar');
   const [id, setId] = useState<string>("");
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
@@ -41,7 +33,7 @@ export default function AddPlace() {
     setId(placeId);
 
     if (placeId !== '0') {
-      setTitleAddEdit('Edit');
+      setTitleAddEdit('Editar');
       const fetchPlaceData = async () => {
         try {
           const response = await axios.get(apiUrl);
@@ -106,6 +98,7 @@ export default function AddPlace() {
         navigate("/");
       } catch (error) {
         console.error("Error saving place data:", error);
+        toast.error("Error al guardar o modificar lugar turistico.");
       }
       setErrors({});
     }
@@ -181,7 +174,7 @@ export default function AddPlace() {
             />
             { errors.city && <div className="error">{errors.city}</div> }
           </div>
-          <button type="submit">{titleAddEdit} Place</button>
+          <button type="submit">{titleAddEdit} Lugar</button>
         </form>
       </div>
     </div>
