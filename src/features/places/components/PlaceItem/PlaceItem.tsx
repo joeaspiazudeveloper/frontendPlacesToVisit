@@ -8,16 +8,19 @@ export default function PlaceItem({place, onDelete, isDetail}: {place: Place,
 
     return (
         <div className="place" key={place._id}>
-            <Link to={`/places/${place._id}`}>
-                <img
-                    src={`https://${place.imageUrl}`}
-                    alt={place.title}
-                    onError={(e) => {
-                        e.currentTarget.onerror = null;
-                        e.currentTarget.src = "/images/malecon2000.jpg";
-                    }}
-                />
-            </Link>
+            <div className="image-container"> {/* Nuevo contenedor */}
+                <Link to={`/places/${place._id}`}>
+                    <img
+                        src={`https://${place.imageUrl}`}
+                        alt={place.title}
+                        className="image" // Clase para la imagen
+                        onError={(e) => {
+                            e.currentTarget.onerror = null;
+                            e.currentTarget.src = "/images/malecon2000.jpg";
+                        }}
+                    />
+                </Link>
+            </div>
             
             <div className="place-body">
                 <h2>{place.title}</h2>

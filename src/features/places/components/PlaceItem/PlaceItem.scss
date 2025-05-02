@@ -40,5 +40,23 @@
         height: 240px;
     }
 
+    .image-container {
+        overflow: hidden; /* Asegura que el zoom no se desborde */
+        margin-bottom: 10px; /* Espacio entre la imagen y el texto */
+        display: block; /* Para que ocupe todo el ancho disponible */
+    }
+
+    img.image {
+        display: block; /* Elimina espacio extra debajo de la imagen */
+        width: 100%; /* La imagen ocupa el ancho de su contenedor */
+        height: auto; /* Mantiene la proporción */
+        transition: transform 0.3s ease-in-out; /* Transición suave */
+        transform-origin: center center; /* Zoom desde el centro */
+    }
+
+    .image-container:hover img.image {
+        transform: scale(1.1); /* Aumenta la escala al hacer hover */
+    }
+
 
 }

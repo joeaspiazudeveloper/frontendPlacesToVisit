@@ -41,7 +41,7 @@ function PlaceDetail() {
                 <div className="place-detail-maincontent">
                     <div className="back-button">
                         <Link to="/">
-                            <button>Back</button>
+                            <button>Volver</button>
                         </Link>
                     </div>
                      <PlaceItem place={place} key={place._id} onDelete={() => {}} isDetail={false} />

@@ -74,19 +74,19 @@ export default function AddPlace() {
     let validationErrors: { [key: string]: string } = {};
 
     if (!place.title.trim()) {
-      validationErrors.title = "Title must not be empty.";
+      validationErrors.title = "Titulo no debe estar vacio.";
     }
     if (!place.description.trim()) {
-      validationErrors.description = "Description must not be empty.";
+      validationErrors.description = "Descripcion no debe estar vacio.";
     }
     if (!place.mapsUrl.trim()) {
-      validationErrors.mapsUrl = "Maps URL must not be empty.";
+      validationErrors.mapsUrl = "Link de Google Maps no debe estar vacio.";
     }
     if (!place.imageUrl.trim()) {
-      validationErrors.imageUrl = "Image URL must not be empty.";
+      validationErrors.imageUrl = "Link Imagen no debe estar vacio.";
     }
     if (!place.city.trim()) {
-      validationErrors.city = "City must not be empty.";
+      validationErrors.city = "Ciudad no debe estar vacio.";
     }
 
     if (Object.keys(validationErrors).length > 0) {
@@ -115,17 +115,17 @@ export default function AddPlace() {
     <div className="add-place">
       <div className="back-button">
         <Link to="/">
-          <button>Back</button>
+          <button>Volver</button>
         </Link>
       </div>
       <div className="form">
         <form onSubmit={handleSubmit}>
-          <h1 className='title'>{titleAddEdit} Place</h1>
+          <h1 className='title'>{titleAddEdit} Lugar Turistico</h1>
           <div className="form-field">
-            <label htmlFor="title">Title: </label>
+            <label htmlFor="title">Titulo: </label>
             <input
               type="text"
-              placeholder="Title"
+              placeholder="Llene titulo"
               name="title"
               value={place.title}
               onChange={handleChange}
@@ -134,10 +134,10 @@ export default function AddPlace() {
             { errors.title && <div className="error">{errors.title}</div> }
           </div>
           <div className="form-field">
-            <label htmlFor="description">Description: </label>
+            <label htmlFor="description">Descripcion: </label>
             <input
               type="text"
-              placeholder="Description"
+              placeholder="Llene descripcion"
               name="description"
               value={place.description}
               onChange={handleChange}
@@ -146,10 +146,10 @@ export default function AddPlace() {
             { errors.description && <div className="error">{errors.description}</div> }
           </div>
           <div className="form-field">
-            <label htmlFor="mapsUrl">Maps Url: </label>
+            <label htmlFor="mapsUrl">Link Google Maps: </label>
             <input
               type="text"
-              placeholder="Maps URL"
+              placeholder="Llene el link de google maps"
               name="mapsUrl"
               value={place.mapsUrl}
               onChange={handleChange}
@@ -158,10 +158,10 @@ export default function AddPlace() {
             { errors.mapsUrl && <div className="error">{errors.mapsUrl}</div> }
           </div>
           <div className="form-field">
-            <label htmlFor="imageUrl">Image Url: </label>
+            <label htmlFor="imageUrl">Link Imagen: (sin https)</label>
             <input
               type="text"
-              placeholder="Image URL"
+              placeholder="Llene el link de imagen"
               name="imageUrl"
               value={place.imageUrl}
               onChange={handleChange}
@@ -170,10 +170,10 @@ export default function AddPlace() {
             { errors.imageUrl && <div className="error">{errors.imageUrl}</div> }
           </div>
           <div className="form-field">
-            <label htmlFor="city">City: </label>
+            <label htmlFor="city">Ciudad: </label>
             <input
               type="text"
-              placeholder="City"
+              placeholder="Llene ciudad"
               name="city"
               value={place.city}
               onChange={handleChange}
