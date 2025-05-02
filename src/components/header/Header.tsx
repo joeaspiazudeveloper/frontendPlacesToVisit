@@ -9,7 +9,7 @@ export default function Header() {
         </h2>
         <div className="second-header">
             
-                <h2>Ven y descubre a Ecuador!</h2>
+                <h2>Ven y descubre Ecuador! 🇪🇨</h2>
             
         </div>
     </div>

@@ -41,21 +41,20 @@
     }
 
     .image-container {
-        overflow: hidden; /* Asegura que el zoom no se desborde */
-        margin-bottom: 10px; /* Espacio entre la imagen y el texto */
-        display: block; /* Para que ocupe todo el ancho disponible */
+        overflow: hidden;
+        margin-bottom: 10px;
+        display: block;
     }
 
     img.image {
-        display: block; /* Elimina espacio extra debajo de la imagen */
-        width: 100%; /* La imagen ocupa el ancho de su contenedor */
-        height: auto; /* Mantiene la proporción */
-        transition: transform 0.3s ease-in-out; /* Transición suave */
-        transform-origin: center center; /* Zoom desde el centro */
+        display: block;
+        width: 100%;
+        transition: transform 0.3s ease-in-out;
+        transform-origin: center center;
     }
 
     .image-container:hover img.image {
-        transform: scale(1.1); /* Aumenta la escala al hacer hover */
+        transform: scale(1.1);
     }
 
 
