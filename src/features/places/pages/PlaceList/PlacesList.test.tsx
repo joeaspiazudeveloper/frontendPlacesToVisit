@@ -25,17 +25,9 @@ jest.mock('../../contexts/PlacesContext', () => ({
   usePlacesContext: () => mockPlacesContextValue,
 }));
 
-// Mock Vite's import.meta.env
-Object.defineProperty(global, 'import', {
-  configurable: true,
-  value: {
-    meta: {
-      env: {
-        VITE_API_URL: "http://mock-api.com/places",
-      },
-    },
-  },
-});
+// Instead of mocking global.import, set process.env directly,
+// as babel-plugin-transform-vite-meta-env translates import.meta.env to process.env
+process.env.VITE_API_URL = "http://mock-api.com/places";
 
 // Mock react-toastify
 jest.mock('react-toastify', () => ({
