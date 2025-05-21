@@ -3,18 +3,25 @@ import { jest } from '@jest/globals';
 import { Place } from '../../types/PlaceType';
 import PlacesList from './PlacesList';
 
+// --- MOCKS SECTION ---
+// This section goes at the beginning of the test file, BEFORE any `describe` or `test` blocks.
+// Mocks apply to the entire test file.
+
+// Mock react-router-dom's useNavigate hook
+// We replace the actual useNavigate with a Jest mock function so we can track its calls.
 const mockUseNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({
-  __esModule: true,
+  __esModule: true, // Important for ES Modules with default exports
   useNavigate: () => mockUseNavigate,
 }));
 
 // Mock the PlacesContext.
+// We define a mock object here so we can control its values for different tests.
 const mockPlacesContextValue = {
-  places: [] as Place[],
-  loading: false,
-  error: null,
-  removePlace: jest.fn(),
+  places: [] as Place[], // Initial empty places array
+  loading: false,        // Initial loading state
+  error: null,           // Initial error state
+  removePlace: jest.fn(), // Mocked functions that won't do anything real
   refetchPlaces: jest.fn(),
 };
 
@@ -24,6 +31,8 @@ jest.mock('../../contexts/PlacesContext', () => ({
 }));
 
 // Mock Vite's import.meta.env for environment variables
+// Jest runs in Node.js, not in the browser or with Vite.
+// This simulates the `import.meta.env` object to prevent `apiUrl` from being `undefined`.
 Object.defineProperty(global, 'import', {
   configurable: true,
   value: {
@@ -44,6 +53,8 @@ jest.mock('react-toastify', () => ({
 }));
 
 // Mock child components to isolate the PlacesList component
+// This replaces actual components with simple divs that have a `data-testid`.
+// It makes tests faster and focuses only on PlacesList's rendering logic.
 jest.mock('../../components/PlaceItem/PlaceItem', () => ({
   __esModule: true,
   default: jest.fn((props: any) => <div data-testid="mock-place-item" {...props} />),
@@ -62,6 +73,9 @@ jest.mock('../../../../components/SearchBar/SearchBar', () => ({
 
 // --- TEST SUITE START ---
 describe('PlacesList', () => {
+
+  // beforeEach runs before EACH `test` within this `describe` block.
+  // It's crucial for ensuring each test starts with a clean slate.
   beforeEach(() => {
     // Clear any previous calls to mocked functions (e.g., jest.fn() calls)
     jest.clearAllMocks();
@@ -121,6 +135,10 @@ describe('PlacesList', () => {
 
     // 4. Assert that exactly 3 skeletons were found.
     expect(skeletons).toHaveLength(3);
+
+    // You could also assert that other elements (like the "No places found" message) are NOT present
+    // expect(screen.queryByText(/no places found/i)).not.toBeInTheDocument();
+    // expect(screen.queryByRole('button', { name: /agregar lugar turistico/i })).not.toBeInTheDocument();
   });
 
 });
