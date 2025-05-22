@@ -2,7 +2,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { jest } from '@jest/globals'; 
 import { Place } from '../../types/PlaceType';
 import PlacesList from './PlacesList';
-import axios from 'axios'; // Import axios to mock it
+import axios from 'axios';
 import { toast } from 'react-toastify';
 
 // Mock react-router-dom's useNavigate
@@ -16,7 +16,7 @@ jest.mock('react-router-dom', () => ({
 const mockPlacesContextValue = {
   places: [] as Place[],
   loading: false,
-  error: null as string | null, // Explicitly allow null for no error state
+  error: null as string | null,
   removePlace: jest.fn(),
   refetchPlaces: jest.fn(),
 };
@@ -76,7 +76,7 @@ describe('PlacesList', () => {
     jest.clearAllMocks();
     mockPlacesContextValue.places = [];
     mockPlacesContextValue.loading = false;
-    mockPlacesContextValue.error = null; // Ensure it's null for no error
+    mockPlacesContextValue.error = null;
   });
 
   test('renders "No places found" when no places are available', () => {
