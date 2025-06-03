@@ -15,8 +15,8 @@
 │   └── lcov.info
 ├── dist
 │   ├── assets
-│   │   ├── index-uFA9yXMR.css
-│   │   └── index-vJJzx8cl.js
+│   │   ├── index-D6GJI1UT.js
+│   │   └── index-DLTSa51t.css
 │   ├── designs
 │   │   └── designPlaceListEcuador.jpg
 │   ├── images
@@ -75,7 +75,6 @@
 │   │   │   │   │   ├── PlaceDetail.scss
 │   │   │   │   │   └── PlaceDetail.tsx
 │   │   │   │   └── PlaceList
-│   │   │   │       ├── PlaceList.note.txt
 │   │   │   │       ├── PlaceList.scss
 │   │   │   │       ├── PlacesList.test.tsx
 │   │   │   │       └── PlacesList.tsx
@@ -88,7 +87,10 @@
 │   │   └── routes.tsx
 │   ├── shared
 │   │   ├── components
-│   │   │   └── AppSkeleton.tsx
+│   │   │   ├── AppSkeleton.tsx
+│   │   │   └── et-dialog
+│   │   │       ├── et-dialog.scss
+│   │   │       └── et-dialog.tsx
 │   │   ├── hooks
 │   │   └── types
 │   ├── styles
@@ -99,4 +101,4 @@
 ├── tsconfig.json
 └── vite.config.js
 
-38 directories, 62 files
+39 directories, 63 files

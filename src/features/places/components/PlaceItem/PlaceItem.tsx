@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import { Place } from "../../types/PlaceType";
 import "./PlaceItem.scss";
 import { useState } from "react";
-import EtDialog from "../../../../shared/components/et-dialog/et-dialog";
 import PlaceDetail from "../../pages/PlaceDetail/PlaceDetail";
+import EtDialog from "../../../../shared/components/et-dialog";
 
 export default function PlaceItem({place, onDelete, isDetail}: {place: Place, 
     onDelete: (placeId: string) => void, isDetail: boolean}) {
