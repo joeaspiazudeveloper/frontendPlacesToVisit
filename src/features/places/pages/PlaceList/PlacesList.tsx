@@ -18,8 +18,6 @@ export default function PlacesList() {
     const { places, loading, error, removePlace, refetchPlaces } = usePlacesContext()
     const navigate = useNavigate();
 
-    const [isHelloDialogOpen, setIsHelloDialogOpen] = useState(false);
-
     const handleDelete = async (placeId: string) => {
       // Add confirmation before deleting
       if (!window.confirm("Estas seguro que deseas eliminar este lugar turistico?")) {
@@ -41,14 +39,6 @@ export default function PlacesList() {
     const redirectAddPlace = () => {
       navigate("/addplace");
     }
-
-    const handleOpenHelloDialog = () => {
-      setIsHelloDialogOpen(true);
-    };
-
-    const handleCloseHelloDialog = () => {
-      setIsHelloDialogOpen(false);
-    };
   
     if (loading) {
       return (
@@ -64,16 +54,11 @@ export default function PlacesList() {
     return (
       <div className="place-list-container">
 
-        <button className="primary-button" onClick={handleOpenHelloDialog} style={{ marginLeft: '10px' }}>
-          Open Hello Dialog
-        </button>
-        
-        {/* SearchBar area for now only Places */}
         <SearchBar places={places} />
 
-        {/* <div className="add-place-btn-content">
+        <div className="add-place-btn-content">
           <button className="primary-button add-place-btn" onClick={redirectAddPlace}>Agregar Lugar Turistico</button>
-        </div> */}
+        </div>
 
         <div className="place-list">
           { places.length === 0 ? (
@@ -87,13 +72,6 @@ export default function PlacesList() {
             
           )}
         </div>
-
-        {/* <EtDialog isOpen={isHelloDialogOpen} onClose={handleCloseHelloDialog} title="Hello Ecuador Travel">
-          <p>This is Ecuador Travel Dialog!!</p>
-        </EtDialog> */}
-
-
-
       </div>
     );
 }

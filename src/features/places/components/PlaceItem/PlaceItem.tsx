@@ -58,7 +58,10 @@ export default function PlaceItem({place, onDelete, isDetail}: {place: Place,
             </div>
 
             { isShowDetailOpen && 
-                <EtDialog isOpen={isShowDetailOpen} onClose={handleCloseDialogPlaceItem} title={place.title}>
+                <EtDialog isOpen={isShowDetailOpen} 
+                    onClose={handleCloseDialogPlaceItem} title={place.title}
+                    slideFrom="right"
+                >
                     <PlaceDetail place={place}></PlaceDetail>
                 </EtDialog>
             }
