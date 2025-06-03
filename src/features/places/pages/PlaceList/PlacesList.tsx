@@ -8,7 +8,7 @@ import { usePlacesContext } from "../../contexts/PlacesContext";
 import SearchBar from "../../../../components/SearchBar/SearchBar";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import EtDialog from "../../../../shared/components/et-dialog/et-dialog";
+import EtDialog from "../../../../shared/components/et-dialog";
 
 
 
