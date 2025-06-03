@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { use, useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Place } from '../../types/PlaceType';
@@ -6,49 +6,30 @@ import PlaceItem from '../../components/PlaceItem/PlaceItem';
 
 import "./PlaceDetail.scss"
 
-function PlaceDetail() {
-    const { placeId } = useParams<{ placeId: string }>();
-    const [place, setPlace] = useState<Place | null>(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState('');
-
-    const apiUrl = import.meta.env.VITE_API_URL;
-
-    useEffect(() => {
-        const fetchPlace = async () => {
-            try {
-                const response = await axios.get(`${apiUrl}/${placeId}`);
-                setPlace(response.data);
-            } catch (error) {
-                setError("Failed to load place details.");
-            } finally {
-                setLoading(false);
-            }
-        }
-        fetchPlace();
-    }, [placeId]);
-
-
+function PlaceDetail({ place }: {place: Place}) {
+    console.log(place._id);
     return (
         <div className="place-detail">
-            {loading ? (
-                <p>Loading...</p>
-            ) : error ? (
-                <p className="error">{error}</p>
-            ) : !place ? (
-                <p>Place not found</p>
-            ) : (
-                <div className="place-detail-maincontent">
-                    <div className="back-button">
-                        <Link to="/">
-                            <button>Volver</button>
-                        </Link>
-                    </div>
-                     <PlaceItem place={place} key={place._id} onDelete={() => {}} isDetail={false} />
-                </div>
-               
-
-            )}
+            <div className="place-detail-maincontent">
+                <img
+                    src={`https://${place.imageUrl}`}
+                    alt={place.title}
+                    className="place-detail-image" // Asume una clase para la imagen de detalle
+                    onError={(e) => {
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = "/images/malecon2000.jpg"; // Imagen de fallback
+                    }}
+                />
+                <h2>{place.title}</h2>
+                <p><strong>Descripción:</strong> {place.description}</p>
+                <p><strong>Ciudad:</strong> {place.city}</p>
+                <p>
+                    <strong>Ubicación en mapa:</strong> 
+                    <Link to={`https://${place.mapsUrl}`} target="_blank" rel="noopener noreferrer">
+                        Ver en Mapas <i className="fas fa-external-link-alt"></i>
+                    </Link>
+                </p>
+            </div>
         </div>
     )
 }

@@ -6,8 +6,10 @@ import PlaceItem from "../../components/PlaceItem/PlaceItem";
 import "./PlaceList.scss";
 import { usePlacesContext } from "../../contexts/PlacesContext";
 import SearchBar from "../../../../components/SearchBar/SearchBar";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import EtDialog from "../../../../shared/components/et-dialog/et-dialog";
+
 
 
 export default function PlacesList() {
@@ -15,6 +17,8 @@ export default function PlacesList() {
     const apiUrl = import.meta.env.VITE_API_URL;
     const { places, loading, error, removePlace, refetchPlaces } = usePlacesContext()
     const navigate = useNavigate();
+
+    const [isHelloDialogOpen, setIsHelloDialogOpen] = useState(false);
 
     const handleDelete = async (placeId: string) => {
       // Add confirmation before deleting
@@ -37,6 +41,14 @@ export default function PlacesList() {
     const redirectAddPlace = () => {
       navigate("/addplace");
     }
+
+    const handleOpenHelloDialog = () => {
+      setIsHelloDialogOpen(true);
+    };
+
+    const handleCloseHelloDialog = () => {
+      setIsHelloDialogOpen(false);
+    };
   
     if (loading) {
       return (
@@ -52,20 +64,35 @@ export default function PlacesList() {
     return (
       <div className="place-list-container">
 
+        <button className="primary-button" onClick={handleOpenHelloDialog} style={{ marginLeft: '10px' }}>
+          Open Hello Dialog
+        </button>
+        
         {/* SearchBar area for now only Places */}
         <SearchBar places={places} />
 
-        <div className="add-place-btn-content">
+        {/* <div className="add-place-btn-content">
           <button className="primary-button add-place-btn" onClick={redirectAddPlace}>Agregar Lugar Turistico</button>
-        </div>
+        </div> */}
 
         <div className="place-list">
-          {places.length === 0 ? (
+          { places.length === 0 ? (
             <p>No places found</p>
           ) : (
-            places.map((place: Place) => <PlaceItem place={place} key={place._id} onDelete={handleDelete} isDetail={true} />)
+            places.map((place: Place) =>
+              (
+                <PlaceItem place={place} key={place._id} onDelete={handleDelete} isDetail={true} />
+              )
+            )
+            
           )}
         </div>
+
+        {/* <EtDialog isOpen={isHelloDialogOpen} onClose={handleCloseHelloDialog} title="Hello Ecuador Travel">
+          <p>This is Ecuador Travel Dialog!!</p>
+        </EtDialog> */}
+
+
 
       </div>
     );
