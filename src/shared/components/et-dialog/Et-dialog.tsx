@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import './Et-dialog.scss';
+import './et-dialog.scss';
 
 interface EtDialogProps {
   isOpen: boolean;
