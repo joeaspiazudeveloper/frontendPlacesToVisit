@@ -3,7 +3,7 @@ import { Place } from "../../types/PlaceType";
 import "./PlaceItem.scss";
 import { useState } from "react";
 import PlaceDetail from "../../pages/PlaceDetail/PlaceDetail";
-import EtDialog from "@shared/components/et-dialog";
+import EtDialog from "@shared/components/EtDialog";
 
 export default function PlaceItem({place, onDelete, isDetail}: {place: Place, 
     onDelete: (placeId: string) => void, isDetail: boolean}) {
