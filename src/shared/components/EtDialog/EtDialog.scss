@@ -1,3 +1,7 @@
+:root {
+  --et-dialog-width: 400px;
+}
+
 .et-dialog {
   border: none;
   padding: 0;
@@ -8,48 +12,57 @@
 
   // Animation properties for transform and opacity
   transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-  opacity: 0; // Hidden by default for animation entry/exit
+  opacity: 0;
   max-height: unset;
+
+  // IMPORTANT: Override default dialog centering for slide animations
+  // This ensures 'top:0', 'left:0'/'right:0' take precedence.
+  &[open]:not(.et-dialog--slide-right):not(.et-dialog--slide-left) {
+    margin: auto;
+  }
 
   // Backdrop styling
   &::backdrop {
     background-color: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(2px);
-    opacity: 0; // Start with transparent backdrop
-    transition: opacity 0.3s ease-out; // Transition for backdrop
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
   }
 
   // Styles when the dialog is open
   &[open] {
-    opacity: 1; // Make dialog visible
-    animation: fade-in 0.3s forwards; // General fade-in animation if no slide
+    opacity: 1;
+    animation: fade-in 0.3s forwards;
 
     &::backdrop {
-      opacity: 1; // Make backdrop visible
-      animation: fade-backdrop-in 0.3s forwards; // Backdrop fade-in animation
+      opacity: 1;
+      animation: fade-backdrop-in 0.3s forwards;
     }
   }
 
   // Slide-from-right animation
   &.et-dialog--slide-right {
-    position: fixed; // Always relative to viewport now with Portal
+    position: fixed;
     margin: 0;
-    top: 0; // Starts from the very top of the viewport
-    right: 0; // Position to the right
-    height: 100vh; // Full viewport height
-    width: 350px; // Fixed width for a side panel
-    max-width: 90%; // Max width relative to viewport
-    transform: translateX(100%); // Start outside view to the right
-    opacity: 0; // Start invisible
+    top: 0;
+    // Remove 'right: 0' from here. We'll control position entirely with transform.
+    height: 100vh;
+    width: var(--et-dialog-width);
+    max-width: 90%;
+    // Start completely off-screen to the right, using viewport width
+    transform: translateX(100vw);
+    opacity: 0;
 
     &[open] {
-      transform: translateX(180%); // Slide into view
+      // End at the very right edge (0px from right)
+      transform: translateX(calc(100vw - var(--et-dialog-width)));
       opacity: 1;
-      animation: none; // Disable general fade-in
+      animation: none;
     }
 
     &:not([open]) {
-      transform: translateX(100%); // Slide out of view
+      // When closing, slide back out off-screen to the right
+      transform: translateX(100vw);
       opacity: 0;
     }
   }
@@ -58,22 +71,26 @@
   &.et-dialog--slide-left {
     position: fixed;
     margin: 0;
-    top: 0; // Starts from the very top of the viewport
-    left: 0; // Position to the left
-    height: 100vh; // Full viewport height
-    width: 350px;
+    top: 0;
+    // Remove 'left: 0' from here. Control position entirely with transform.
+    // left: 0; /* REMOVER */
+    height: 100vh;
+    width: var(--et-dialog-width);
     max-width: 90%;
-    transform: translateX(-100%); // Start outside view to the left
+    // Start completely off-screen to the left, using viewport width
+    transform: translateX(-100vw);
     opacity: 0;
 
     &[open] {
+      // End at the very left edge (0px from left)
       transform: translateX(0);
       opacity: 1;
-      animation: none; // Disable general fade-in
+      animation: none;
     }
 
     &:not([open]) {
-      transform: translateX(-100%);
+      // When closing, slide back out off-screen to the left
+      transform: translateX(-100vw);
       opacity: 0;
     }
   }
@@ -116,8 +133,9 @@
     padding: 20px;
     line-height: 1.6;
     color: #555;
-    overflow-y: auto; // Enables scrolling if content overflows
-    flex-grow: 1; // Allows body to fill remaining space
+    overflow-y: auto;
+    flex-grow: 1;
+    height: calc(100vh - 70px);
   }
 }
 
