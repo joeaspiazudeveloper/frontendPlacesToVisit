@@ -1,0 +1,145 @@
+.et-dialog {
+  border: none;
+  padding: 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  color: #333;
+
+  // Animation properties for transform and opacity
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+  opacity: 0; // Hidden by default for animation entry/exit
+  max-height: unset;
+
+  // Backdrop styling
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(2px);
+    opacity: 0; // Start with transparent backdrop
+    transition: opacity 0.3s ease-out; // Transition for backdrop
+  }
+
+  // Styles when the dialog is open
+  &[open] {
+    opacity: 1; // Make dialog visible
+    animation: fade-in 0.3s forwards; // General fade-in animation if no slide
+
+    &::backdrop {
+      opacity: 1; // Make backdrop visible
+      animation: fade-backdrop-in 0.3s forwards; // Backdrop fade-in animation
+    }
+  }
+
+  // Slide-from-right animation
+  &.et-dialog--slide-right {
+    position: fixed; // Always relative to viewport now with Portal
+    margin: 0;
+    top: 0; // Starts from the very top of the viewport
+    right: 0; // Position to the right
+    height: 100vh; // Full viewport height
+    width: 350px; // Fixed width for a side panel
+    max-width: 90%; // Max width relative to viewport
+    transform: translateX(100%); // Start outside view to the right
+    opacity: 0; // Start invisible
+
+    &[open] {
+      transform: translateX(180%); // Slide into view
+      opacity: 1;
+      animation: none; // Disable general fade-in
+    }
+
+    &:not([open]) {
+      transform: translateX(100%); // Slide out of view
+      opacity: 0;
+    }
+  }
+
+  // Slide-from-left animation
+  &.et-dialog--slide-left {
+    position: fixed;
+    margin: 0;
+    top: 0; // Starts from the very top of the viewport
+    left: 0; // Position to the left
+    height: 100vh; // Full viewport height
+    width: 350px;
+    max-width: 90%;
+    transform: translateX(-100%); // Start outside view to the left
+    opacity: 0;
+
+    &[open] {
+      transform: translateX(0);
+      opacity: 1;
+      animation: none; // Disable general fade-in
+    }
+
+    &:not([open]) {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+  }
+
+  // Flexbox for internal layout, allowing body to scroll
+  display: flex;
+  flex-direction: column;
+
+  .et-dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    background-color: #f8f8f8;
+  }
+
+  .et-dialog-title {
+    margin: 0;
+    font-size: 1.5em;
+    color: #333;
+  }
+
+  .et-dialog-close {
+    background: none;
+    border: none;
+    font-size: 1.8em;
+    cursor: pointer;
+    color: #999;
+    line-height: 1;
+    padding: 0;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: #333;
+    }
+  }
+
+  .et-dialog-body {
+    padding: 20px;
+    line-height: 1.6;
+    color: #555;
+    overflow-y: auto; // Enables scrolling if content overflows
+    flex-grow: 1; // Allows body to fill remaining space
+  }
+}
+
+// Keyframes for general fade-in animations (when slideFrom is 'none')
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fade-backdrop-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

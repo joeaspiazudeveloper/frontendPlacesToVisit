@@ -1,15 +1,28 @@
 import { Link } from "react-router-dom";
 import { Place } from "../../types/PlaceType";
 import "./PlaceItem.scss";
+import { useState } from "react";
+import PlaceDetail from "../../pages/PlaceDetail/PlaceDetail";
+import EtDialog from "@shared/components/EtDialog";
 
 export default function PlaceItem({place, onDelete, isDetail}: {place: Place, 
-    onDelete: (placeId: string) => void, isDetail: boolean}) { 
+    onDelete: (placeId: string) => void, isDetail: boolean}) {
 
+    const [isShowDetailOpen, setisShowDetailOpen] = useState(false);
+
+    const handleOpenDialogPlaceItem = () => {
+        setisShowDetailOpen(true);
+    }
+
+    const handleCloseDialogPlaceItem = () => {
+        setisShowDetailOpen(false);
+    }
 
     return (
-        <div className="place" key={place._id}>
+        <> 
+            <div className="place" key={place._id}>
             <div className="image-container"> {/* Nuevo contenedor */}
-                <Link to={`/places/${place._id}`}>
+                <a onClick={ handleOpenDialogPlaceItem }>
                     <img
                         src={`https://${place.imageUrl}`}
                         alt={place.title}
@@ -19,7 +32,7 @@ export default function PlaceItem({place, onDelete, isDetail}: {place: Place,
                             e.currentTarget.src = "/images/malecon2000.jpg";
                         }}
                     />
-                </Link>
+                </a>
             </div>
             
             <div className="place-body">
@@ -42,6 +55,17 @@ export default function PlaceItem({place, onDelete, isDetail}: {place: Place,
                     </button>
                 </div>
             }
-        </div>
+            </div>
+
+            { isShowDetailOpen && 
+                <EtDialog isOpen={isShowDetailOpen} 
+                    onClose={handleCloseDialogPlaceItem} title={place.title}
+                    slideFrom="right"
+                >
+                    <PlaceDetail place={place}></PlaceDetail>
+                </EtDialog>
+            }
+        </>
+        
     );
 }

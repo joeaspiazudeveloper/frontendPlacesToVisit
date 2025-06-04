@@ -6,8 +6,10 @@ import PlaceItem from "../../components/PlaceItem/PlaceItem";
 import "./PlaceList.scss";
 import { usePlacesContext } from "../../contexts/PlacesContext";
 import SearchBar from "../../../../components/SearchBar/SearchBar";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import EtDialog from "../../../../shared/components/EtDialog";
+
 
 
 export default function PlacesList() {
@@ -52,7 +54,6 @@ export default function PlacesList() {
     return (
       <div className="place-list-container">
 
-        {/* SearchBar area for now only Places */}
         <SearchBar places={places} />
 
         <div className="add-place-btn-content">
@@ -60,13 +61,17 @@ export default function PlacesList() {
         </div>
 
         <div className="place-list">
-          {places.length === 0 ? (
+          { places.length === 0 ? (
             <p>No places found</p>
           ) : (
-            places.map((place: Place) => <PlaceItem place={place} key={place._id} onDelete={handleDelete} isDetail={true} />)
+            places.map((place: Place) =>
+              (
+                <PlaceItem place={place} key={place._id} onDelete={handleDelete} isDetail={true} />
+              )
+            )
+            
           )}
         </div>
-
       </div>
     );
 }
