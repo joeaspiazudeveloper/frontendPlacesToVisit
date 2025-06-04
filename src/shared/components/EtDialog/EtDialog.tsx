@@ -15,44 +15,49 @@ function EtDialog({ isOpen, onClose, title, children, className, slideFrom = 'no
   const dialogRef = useRef<HTMLDialogElement>(null);
   const portalRoot = document.getElementById('dialog-root');
 
+  // Effect to control the native <dialog> element's open/close state.
   useEffect(() => {
     const dialogElement = dialogRef.current;
     if (dialogElement) {
       if (isOpen) {
-        dialogElement.classList.add(`et-dialog--slide-${slideFrom}`);
-        dialogElement.showModal();
+        dialogElement.showModal(); // Opens the dialog modally
       } else {
-        dialogElement.classList.remove(`et-dialog--slide-right`, `et-dialog--slide-left`);
-        dialogElement.close();
+        dialogElement.close(); // Closes the dialog
       }
     }
-  }, [isOpen, slideFrom]);
+  }, [isOpen]); // Re-run when dialog's open state changes
 
+  // Effect to handle the native 'close' event from the <dialog> element.
   useEffect(() => {
     const dialogElement = dialogRef.current;
-    const handleClose = () => onClose();
+    const handleClose = () => onClose(); // Call the parent's onClose handler
 
     if (dialogElement) {
       dialogElement.addEventListener('close', handleClose);
     }
 
     return () => {
+      // Cleanup: Remove event listener on unmount or dependency change.
       if (dialogElement) {
         dialogElement.removeEventListener('close', handleClose);
       }
     };
-  }, [onClose]);
+  }, [onClose]); // Re-run only if the onClose function reference changes
 
+  // Do not render if the portal root is not found in the DOM.
   if (!portalRoot) {
-    return null; 
+    console.warn("Portal root element with ID 'dialog-root' not found. Dialog will not render.");
+    return null;
   }
 
-  // Renderiza el contenido del diálogo en el portal
+  // Render the dialog content using ReactDOM.createPortal
   return ReactDOM.createPortal(
+    // The dialog element, with dynamic classes for styling and animation.
     <dialog ref={dialogRef} className={`et-dialog ${className || ''} et-dialog--slide-${slideFrom}`}>
       <div className="et-dialog-header">
         <h2 className="et-dialog-title">{title || 'Details'}</h2>
-        <button className="et-dialog-close" onClick={onClose}>
+        {/* Close button with accessible label for screen readers */}
+        <button className="et-dialog-close" onClick={onClose} aria-label="Close dialog">
           &times;
         </button>
       </div>
@@ -60,8 +65,8 @@ function EtDialog({ isOpen, onClose, title, children, className, slideFrom = 'no
         {children}
       </div>
     </dialog>,
-    portalRoot // Este es el DOM node donde se renderizará el diálogo
+    portalRoot // Specifies the DOM node where the portal content will be appended.
   );
-};
+}
 
 export default EtDialog;

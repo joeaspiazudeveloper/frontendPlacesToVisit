@@ -6,9 +6,7 @@ import PlaceItem from "../../components/PlaceItem/PlaceItem";
 import "./PlaceList.scss";
 import { usePlacesContext } from "../../contexts/PlacesContext";
 import SearchBar from "../../../../components/SearchBar/SearchBar";
-import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import EtDialog from "../../../../shared/components/EtDialog";
 
 
 
