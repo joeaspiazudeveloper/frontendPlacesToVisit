@@ -1,0 +1,144 @@
+import { render, screen } from '@testing-library/react';
+import { jest } from '@jest/globals'; 
+import { Place } from '../../types/PlaceType';
+import PlacesList from './PlacesList';
+
+// --- MOCKS SECTION ---
+// This section goes at the beginning of the test file, BEFORE any `describe` or `test` blocks.
+// Mocks apply to the entire test file.
+
+// Mock react-router-dom's useNavigate hook
+// We replace the actual useNavigate with a Jest mock function so we can track its calls.
+const mockUseNavigate = jest.fn();
+jest.mock('react-router-dom', () => ({
+  __esModule: true, // Important for ES Modules with default exports
+  useNavigate: () => mockUseNavigate,
+}));
+
+// Mock the PlacesContext.
+// We define a mock object here so we can control its values for different tests.
+const mockPlacesContextValue = {
+  places: [] as Place[], // Initial empty places array
+  loading: false,        // Initial loading state
+  error: null,           // Initial error state
+  removePlace: jest.fn(), // Mocked functions that won't do anything real
+  refetchPlaces: jest.fn(),
+};
+
+// Tell Jest to use our mock object when PlacesContext is imported
+jest.mock('../../contexts/PlacesContext', () => ({
+  usePlacesContext: () => mockPlacesContextValue,
+}));
+
+// Mock Vite's import.meta.env for environment variables
+// Jest runs in Node.js, not in the browser or with Vite.
+// This simulates the `import.meta.env` object to prevent `apiUrl` from being `undefined`.
+Object.defineProperty(global, 'import', {
+  configurable: true,
+  value: {
+    meta: {
+      env: {
+        VITE_API_URL: "http://mock-api.com/places", // A dummy API URL for tests
+      },
+    },
+  },
+});
+
+// Mock react-toastify to prevent real notifications during tests
+jest.mock('react-toastify', () => ({
+  toast: {
+    warn: jest.fn(),
+    error: jest.fn(),
+  },
+}));
+
+// Mock child components to isolate the PlacesList component
+// This replaces actual components with simple divs that have a `data-testid`.
+// It makes tests faster and focuses only on PlacesList's rendering logic.
+jest.mock('../../components/PlaceItem/PlaceItem', () => ({
+  __esModule: true,
+  default: jest.fn((props: any) => <div data-testid="mock-place-item" {...props} />),
+}));
+
+jest.mock('../../components/PlaceItemSkeleton', () => ({
+  __esModule: true,
+  default: jest.fn(() => <div data-testid="mock-place-item-skeleton" />),
+}));
+
+jest.mock('../../../../components/SearchBar/SearchBar', () => ({
+  __esModule: true,
+  default: jest.fn((props: any) => <div data-testid="mock-search-bar" {...props} />),
+}));
+
+
+// --- TEST SUITE START ---
+describe('PlacesList', () => {
+
+  // beforeEach runs before EACH `test` within this `describe` block.
+  // It's crucial for ensuring each test starts with a clean slate.
+  beforeEach(() => {
+    // Clear any previous calls to mocked functions (e.g., jest.fn() calls)
+    jest.clearAllMocks();
+
+    // Reset the mock context value to its default state for each test
+    mockPlacesContextValue.places = [];
+    mockPlacesContextValue.loading = false;
+    mockPlacesContextValue.error = null;
+    mockPlacesContextValue.removePlace.mockClear();
+    mockPlacesContextValue.refetchPlaces.mockClear();
+  });
+
+  // TEST 1: Verify "No places found" message when no data
+  test('renders "No places found" when no places are available', () => {
+    // 1. Render the `PlacesList` component into the simulated DOM.
+    render(<PlacesList />);
+
+    // 2. Query for the text "No places found" (case-insensitive regex).
+    // `screen.getByText` is a React Testing Library query that mimics how a user
+    // would find text on the screen.
+    const noPlacesMessage = screen.getByText(/no places found/i);
+
+    // 3. Assert that the found element is present in the document.
+    // `toBeInTheDocument()` is a matcher from `@testing-library/jest-dom`.
+    expect(noPlacesMessage).toBeInTheDocument();
+  });
+
+  // TEST 2: Verify the "Agregar Lugar Turistico" button is present
+  test('renders the "Agregar Lugar Turistico" button', () => {
+    // 1. Render the `PlacesList` component.
+    render(<PlacesList />);
+
+    // 2. Query for a button by its accessible role and name (text).
+    // `screen.getByRole` is preferred as it mimics assistive technologies.
+    const addButton = screen.getByRole('button', { name: /agregar lugar turistico/i });
+
+    // 3. Assert that the button is present in the document.
+    expect(addButton).toBeInTheDocument();
+  });
+
+  // NEW TEST: Verify the loading state (renders skeletons)
+  test('renders loading skeletons when loading is true', () => {
+    // --- ARRANGE ---
+    // 1. Modify the mock context value specifically for this test.
+    // This tells PlacesList that it should be in a loading state.
+    mockPlacesContextValue.loading = true; 
+
+    // --- ACT ---
+    // 2. Render the component with the modified mock context.
+    render(<PlacesList />);
+
+    // --- ASSERT ---
+    // 3. Query for the loading skeletons.
+    // Your PlacesList component renders 3 PlaceItemSkeleton components when `loading` is true.
+    // We use `getAllByTestId` because we expect multiple elements with the same `data-testid`.
+    const skeletons = screen.getAllByTestId('mock-place-item-skeleton');
+
+    // 4. Assert that exactly 3 skeletons were found.
+    expect(skeletons).toHaveLength(3);
+
+    // You could also assert that other elements (like the "No places found" message) are NOT present
+    // expect(screen.queryByText(/no places found/i)).not.toBeInTheDocument();
+    // expect(screen.queryByRole('button', { name: /agregar lugar turistico/i })).not.toBeInTheDocument();
+  });
+
+});

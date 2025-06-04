@@ -1,5 +1,5 @@
 import { RouteObject } from "react-router-dom";
-import { AddEditPlace, PlacesList } from "../features/places";
+import { AddEditPlace, PlaceDetail, PlacesList } from "../features/places";
 
 const routes: RouteObject[] = [
     {
@@ -9,6 +9,10 @@ const routes: RouteObject[] = [
     {
         path: "/places",
         element: <PlacesList />,
+    },
+    {
+        path: "/places/:placeId",
+        element: <PlaceDetail />,
     },
     {
         path: "/addplace",

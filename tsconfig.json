@@ -15,10 +15,6 @@
       "noEmit": true,
       "jsx": "react-jsx",
       "types": ["jest", "@testing-library/jest-dom"],
-      "baseUrl": "./src",
-      "paths": {
-        "@shared/*": ["shared/*"],
-      }
     },
     "include": ["src", "types", "jest-setup.cjs"]
   }
