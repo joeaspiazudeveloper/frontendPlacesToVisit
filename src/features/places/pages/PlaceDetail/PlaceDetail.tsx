@@ -7,7 +7,6 @@ import PlaceItem from '../../components/PlaceItem/PlaceItem';
 import "./PlaceDetail.scss"
 
 function PlaceDetail({ place }: {place: Place}) {
-    console.log(place._id);
     return (
         <div className="place-detail">
             <div className="place-detail-maincontent">
