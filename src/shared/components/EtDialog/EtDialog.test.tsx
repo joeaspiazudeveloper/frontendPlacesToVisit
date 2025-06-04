@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, waitFor, within, act } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import EtDialog from './index';
+import EtDialog from './EtDialog';
 
 // Setup for React Portal: Create and clean up the #dialog-root element in JSDOM.
 let dialogRoot: HTMLElement;
