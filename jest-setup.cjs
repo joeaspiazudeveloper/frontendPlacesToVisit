@@ -1,2 +1,6 @@
-// import jest-dom for custom jest matchers
 require('@testing-library/jest-dom');
+const { TextEncoder } = require('util');
+
+if (typeof global.TextEncoder === 'undefined') {
+  global.TextEncoder = TextEncoder;
+}
