@@ -8,9 +8,9 @@ import "./PlaceList.scss";
 import { usePlacesContext } from "../../contexts/PlacesContext";
 import SearchBar from "../../../../components/SearchBar/SearchBar";
 import { toast } from "react-toastify";
-import EtDialog from "@shared/components/EtDialog/EtDialog"; // Adjust path to your EtDialog component
-import PlaceDetail from "../../pages/PlaceDetail/PlaceDetail"; // Adjust path to your PlaceDetail component
-import { useEffect, useState } from "react"; // Import useState and useEffect
+import EtDialog from "@shared/components/EtDialog/EtDialog";
+import PlaceDetail from "../../pages/PlaceDetail/PlaceDetail";
+import { useEffect, useState } from "react"; 
 
 export default function PlacesList() {
     const apiUrl = import.meta.env.VITE_API_URL;
