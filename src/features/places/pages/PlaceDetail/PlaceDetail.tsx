@@ -1,22 +1,23 @@
-import { use, useEffect, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { Place } from '../../types/PlaceType';
-import PlaceItem from '../../components/PlaceItem/PlaceItem';
 
 import "./PlaceDetail.scss"
 
 function PlaceDetail({ place }: {place: Place}) {
+    if (!place) {
+        return <div>No se pudo cargar el detalle del lugar.</div>;
+    }
+
     return (
         <div className="place-detail">
             <div className="place-detail-maincontent">
                 <img
                     src={`https://${place.imageUrl}`}
                     alt={place.title}
-                    className="place-detail-image" // Asume una clase para la imagen de detalle
+                    className="place-detail-image"
                     onError={(e) => {
                         e.currentTarget.onerror = null;
-                        e.currentTarget.src = "/images/malecon2000.jpg"; // Imagen de fallback
+                        e.currentTarget.src = "/images/malecon2000.jpg";
                     }}
                 />
                 <h2>{place.title}</h2>
@@ -33,4 +34,4 @@ function PlaceDetail({ place }: {place: Place}) {
     )
 }
 
-export default PlaceDetail
+export default PlaceDetail;

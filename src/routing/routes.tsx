@@ -11,6 +11,10 @@ const routes: RouteObject[] = [
         element: <PlacesList />,
     },
     {
+        path: "/places/:id",
+        element: <PlacesList />,
+    },
+    {
         path: "/addplace",
         element: <AddEditPlace />,
     },
