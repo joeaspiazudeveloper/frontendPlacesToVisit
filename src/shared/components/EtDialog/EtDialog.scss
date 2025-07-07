@@ -161,3 +161,12 @@
     opacity: 1;
   }
 }
+
+// less than 500px screen width
+@media screen and (max-width: 500px) {
+  .et-dialog.et-dialog--slide-right[open] {
+    transform: none;
+    width: fit-content;
+    max-width: 100%;
+  }
+}
