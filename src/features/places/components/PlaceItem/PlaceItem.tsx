@@ -1,38 +1,26 @@
 import { Link } from "react-router-dom";
 import { Place } from "../../types/PlaceType";
 import "./PlaceItem.scss";
-import { useState } from "react";
-import PlaceDetail from "../../pages/PlaceDetail/PlaceDetail";
-import EtDialog from "@shared/components/EtDialog/EtDialog.tsx";
 
 export default function PlaceItem({place, onDelete, isDetail}: {place: Place, 
     onDelete: (placeId: string) => void, isDetail: boolean}) {
 
-    const [isShowDetailOpen, setisShowDetailOpen] = useState(false);
-
-    const handleOpenDialogPlaceItem = () => {
-        setisShowDetailOpen(true);
-    }
-
-    const handleCloseDialogPlaceItem = () => {
-        setisShowDetailOpen(false);
-    }
-
     return (
         <> 
             <div className="place" key={place._id}>
-            <div className="image-container"> {/* Nuevo contenedor */}
-                <a onClick={ handleOpenDialogPlaceItem }>
+            <div className="image-container">
+                {/* Navigate to the specific place detail */}
+                <Link to={`/places/${place._id}`}>
                     <img
                         src={`https://${place.imageUrl}`}
                         alt={place.title}
-                        className="image" // Clase para la imagen
+                        className="image"
                         onError={(e) => {
                             e.currentTarget.onerror = null;
                             e.currentTarget.src = "/images/malecon2000.jpg";
                         }}
                     />
-                </a>
+                </Link>
             </div>
             
             <div className="place-body">
@@ -56,15 +44,6 @@ export default function PlaceItem({place, onDelete, isDetail}: {place: Place,
                 </div>
             }
             </div>
-
-            { isShowDetailOpen && 
-                <EtDialog isOpen={isShowDetailOpen} 
-                    onClose={handleCloseDialogPlaceItem} title={place.title}
-                    slideFrom="right"
-                >
-                    <PlaceDetail place={place}></PlaceDetail>
-                </EtDialog>
-            }
         </>
         
     );
