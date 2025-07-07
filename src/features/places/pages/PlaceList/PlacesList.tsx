@@ -1,5 +1,4 @@
-// src/features/places/PlaceList.tsx
-import { useNavigate, useParams } from "react-router-dom"; // Import useParams
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { Place } from "../../types/PlaceType";
 import PlaceItemSkeleton from "../../components/PlaceItemSkeleton";
@@ -8,9 +7,9 @@ import "./PlaceList.scss";
 import { usePlacesContext } from "../../contexts/PlacesContext";
 import SearchBar from "../../../../components/SearchBar/SearchBar";
 import { toast } from "react-toastify";
-import EtDialog from "@shared/components/EtDialog/EtDialog";
+import EtDialog from "../../../../shared/components/EtDialog/EtDialog";
 import PlaceDetail from "../../pages/PlaceDetail/PlaceDetail";
-import { useEffect, useState } from "react"; 
+import { useEffect, useState } from "react";
 
 export default function PlacesList() {
     const apiUrl = import.meta.env.VITE_API_URL;
