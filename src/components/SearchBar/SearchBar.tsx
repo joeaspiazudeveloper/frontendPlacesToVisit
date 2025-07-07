@@ -39,7 +39,7 @@ const SearchBar = (  { places }: { places: Place[] }) => {
             <div className="search-bar__input-wrapper">
                 <input
                     type="text"
-                    placeholder="Buscar destinos turisticos en Ecuador..."
+                    placeholder="Buscar sitios turisticos en Ecuador..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="search-bar__input"
