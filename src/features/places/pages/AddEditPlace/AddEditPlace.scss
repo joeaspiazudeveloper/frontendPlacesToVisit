@@ -1,49 +1,138 @@
-.add-place {
+.add-place-container {
     display: flex;
     flex-direction: column;
+    align-items: center; // Centrar el contenido horizontalmente
+    padding: 20px;
+    background-color: #f9f9f9; // Fondo suave para el contenedor
+    min-height: 100vh; // Asegura que ocupe toda la altura de la vista
 }
-
-/* Form update or add */
 
 .back-button {
     margin-top: 20px;
+    margin-bottom: 30px; // Más espacio debajo del botón de volver
     display: flex;
     justify-content: center;
+
+    .secondary-button {
+        padding: 10px 20px;
+        background-color: #6c757d; // Gris para un botón secundario
+        color: white;
+        border: none;
+        border-radius: 8px; // Bordes más redondeados
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background-color 0.3s ease; // Transición suave
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Sombra sutil
+
+        &:hover {
+            background-color: #5a6268;
+        }
+    }
 }
 
-.title {
-    font-size: 22px;
-    margin: 20px 0;
+.form-wrapper {
+    background-color: #ffffff; // Fondo blanco para el formulario
+    padding: 30px;
+    border-radius: 12px; // Bordes más redondeados
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); // Sombra más pronunciada
+    width: 100%;
+    max-width: 500px; // Limita el ancho máximo del formulario
+    box-sizing: border-box; // Asegura que padding y border se incluyan en el ancho
 }
 
-.form {
+.place-form {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    align-items: center;
+    gap: 20px; // Espacio uniforme entre campos
 
-    input {
-        width: 250px;
-        padding: 10px;
-        border: 1px solid gray;
-    }
-
-    textarea {
-        padding: 10px;
+    .form-title {
+        font-size: 28px; // Título más grande
+        color: #333; // Color de texto más oscuro
+        margin-bottom: 25px; // Más espacio debajo del título
+        text-align: center;
     }
 
     .form-field {
         display: flex;
         flex-direction: column;
-        margin-bottom: 10px;
 
         label {
             font-weight: 600;
-            padding-bottom: 5px;
+            margin-bottom: 8px; // Espacio entre label e input
+            color: #555;
+            font-size: 0.95rem;
+            position: relative; // Necesario para posicionar el asterisco
+        }
+
+        .required-star {
+            color: #dc3545; // Rojo para el asterisco
+            margin-left: 4px; // Pequeño espacio para separarlo de la etiqueta
+            font-weight: bold; // Hacer el asterisco más notorio
+            line-height: 1; // Ajusta la altura de línea para que no afecte el alineado
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%; // Ocupa todo el ancho disponible del form-field
+            padding: 12px 15px; // Más padding para mejor tacto
+            border: 1px solid #ced4da; // Borde gris suave
+            border-radius: 8px; // Bordes redondeados
+            font-size: 1rem;
+            color: #495057;
+            background-color: #f8f9fa; // Fondo ligeramente gris
+            transition: border-color 0.2s ease, box-shadow 0.2s ease; // Transición para focus
+            box-sizing: border-box; // Crucial para padding y border
+
+            &:focus {
+                border-color: #80bdff; // Borde azul en focus
+                outline: 0;
+                box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); // Sombra azul en focus
+                background-color: #ffffff; // Fondo blanco en focus
+            }
+
+            // Estilo para inputs y textareas con error de validación
+            &.input-error {
+                border-color: #dc3545; // Borde rojo
+                box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25); // Sombra roja
+            }
+        }
+
+        textarea {
+            resize: vertical; // Permite redimensionar verticalmente
+            min-height: 100px; // Altura mínima para el textarea
+        }
+
+        .error-message {
+            color: #dc3545; // Rojo oscuro para mensajes de error
+            font-size: 0.85rem;
+            margin-top: 5px; // Espacio entre el input y el mensaje de error
+            // Asegura que los mensajes de error se anuncien como "live regions"
+            // role="alert" ya lo hace a nivel de JS, pero la semántica es clave
         }
     }
 
-    .error {
-        color: #FF6961;
+    .primary-button {
+        width: 100%; // El botón ocupa todo el ancho del formulario
+        padding: 12px 20px;
+        background-color: #5e5ecc; // Azul primario
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-top: 15px; // Espacio antes del botón de submit
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+        &:hover {
+            background-color: #4a4aa8; // Tono más oscuro al pasar el ratón
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        &:active {
+            background-color: #3e3e8f; // Tono aún más oscuro al hacer clic
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
     }
 }

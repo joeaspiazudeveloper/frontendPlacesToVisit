@@ -25,7 +25,7 @@ export default function PlaceItem({place, onDelete}: {place: Place,
             
             <div className="place-body">
                 <h2>{place.title}</h2>
-                <p>{place.description}</p>
+                <p>{place.shortDescription}</p>
             </div>
             <div className="city">
                 <Link to={`https://${place.mapsUrl}`} target="_blank" rel="noopener noreferrer">
