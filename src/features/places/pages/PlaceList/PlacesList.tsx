@@ -108,7 +108,7 @@ export default function PlacesList() {
           ) : (
             places.map((place: Place) =>
               (
-                <PlaceItem place={place} key={place._id} onDelete={handleDelete} isDetail={true} />
+                <PlaceItem place={place} key={place._id} onDelete={handleDelete} />
               )
             )
             
