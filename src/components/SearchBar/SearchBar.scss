@@ -99,7 +99,7 @@
 
 .search-results {
     position: absolute;
-    margin: 1px 90px;
+    margin: 25px;
     left: 0;
     right: 0;
     background-color: white;
@@ -110,6 +110,7 @@
     margin-top: 8px;
     max-height: 250px;
     overflow-y: auto;
+    width: 89%;
 }
 
 .search-results__message {

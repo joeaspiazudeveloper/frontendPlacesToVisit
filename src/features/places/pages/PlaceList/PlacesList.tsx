@@ -99,7 +99,9 @@ export default function PlacesList() {
         <SearchBar places={places} />
 
         <div className="add-place-btn-content">
-          <button className="primary-button add-place-btn" onClick={redirectAddPlace}>Agregar Lugar Turistico</button>
+          <button className="primary-button add-place-btn" onClick={redirectAddPlace}>
+            <i className="fas fa-plus"></i> Agregar
+          </button>
         </div>
 
         <div className="place-list">

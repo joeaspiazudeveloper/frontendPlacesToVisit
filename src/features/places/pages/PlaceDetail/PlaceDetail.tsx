@@ -21,14 +21,15 @@ function PlaceDetail({ place }: {place: Place}) {
                     }}
                 />
                 <h2>{place.title}</h2>
+                <p><strong>Resumen:</strong> {place.shortDescription}</p>
                 <p><strong>Descripción:</strong> {place.description}</p>
                 <p><strong>Ciudad:</strong> {place.city}</p>
-                <p>
+                {/* <p>
                     <strong>Ubicación en mapa:</strong> 
                     <Link to={`https://${place.mapsUrl}`} target="_blank" rel="noopener noreferrer">
                         Ver en Mapas <i className="fas fa-external-link-alt"></i>
                     </Link>
-                </p>
+                </p> */}
             </div>
         </div>
     )
