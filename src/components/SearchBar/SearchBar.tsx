@@ -32,6 +32,7 @@ const SearchBar = (  { places }: { places: Place[] }) => {
         setSearchTerm(result.title);
         setSearchResults([]);
         setIsOpen(false);
+        setSearchTerm('');
     };
 
     return (
