@@ -15,7 +15,7 @@ export default function PlacesList() {
     const apiUrl = import.meta.env.VITE_API_URL;
     const { places, loading, error, removePlace, refetchPlaces } = usePlacesContext();
     const navigate = useNavigate();
-    // Use useParams to get the 'id' from the URL. It will be undefined if no :id is present.
+    
     const { id } = useParams<{ id?: string }>();
 
     // State to hold the data for the place currently being viewed in the dialog
@@ -25,7 +25,7 @@ export default function PlacesList() {
 
     // useEffect to fetch place detail whenever the 'id' in the URL changes
     useEffect(() => {
-        if (id) { // If an 'id' is present in the URL
+        if (id) {
             setDetailLoading(true);
             setDetailError(null);
             const fetchPlaceDetail = async () => {

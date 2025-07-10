@@ -109,6 +109,30 @@
             // Asegura que los mensajes de error se anuncien como "live regions"
             // role="alert" ya lo hace a nivel de JS, pero la semántica es clave
         }
+
+        .image-preview-container {
+            margin-top: 15px;
+            text-align: center; // Centra la imagen si es más pequeña que el contenedor
+            border: 1px dashed #ccc; // Borde para visualizar el área de la vista previa
+            padding: 10px;
+            border-radius: 5px;
+
+            p {
+                margin-bottom: 8px;
+                font-size: 0.9em;
+                color: #555;
+            }
+        }
+
+        .image-preview {
+            max-width: 100%; // Asegura que la imagen no se desborde del contenedor
+            max-height: 200px; // Limita la altura de la vista previa para no ocupar mucho espacio
+            height: auto;
+            display: block; // Asegura que la imagen sea un bloque para margin: auto
+            margin: 0 auto; // Centra la imagen dentro de su contenedor
+            border-radius: 4px; // Bordes ligeramente redondeados
+            object-fit: contain; // Asegura que la imagen se vea completa sin cortar
+        }
     }
 
     .primary-button {

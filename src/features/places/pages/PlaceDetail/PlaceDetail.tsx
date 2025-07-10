@@ -12,7 +12,7 @@ function PlaceDetail({ place }: {place: Place}) {
         <div className="place-detail">
             <div className="place-detail-maincontent">
                 <img
-                    src={`https://${place.imageUrl}`}
+                    src={place.imageUrl}
                     alt={place.title}
                     className="place-detail-image"
                     onError={(e) => {

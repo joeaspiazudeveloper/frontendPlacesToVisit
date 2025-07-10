@@ -12,7 +12,7 @@ export default function PlaceItem({place, onDelete}: {place: Place,
                 {/* Navigate to the specific place detail */}
                 <Link to={`/places/${place._id}`}>
                     <img
-                        src={`https://${place.imageUrl}`}
+                        src={place.imageUrl}
                         alt={place.title}
                         className="image"
                         onError={(e) => {
@@ -28,21 +28,19 @@ export default function PlaceItem({place, onDelete}: {place: Place,
                 <p>{place.shortDescription}</p>
             </div>
             <div className="city">
-                <Link to={`https://${place.mapsUrl}`} target="_blank" rel="noopener noreferrer">
-                    <i className="fas fa-location-dot"></i>
-                </Link>
+                <i className="fas fa-location-dot"></i>
                 <span>{place.city}</span>
             </div>
             {/* Removed temporary */}
             {/* Create a signin implementation to edit places */}
-            {/* <div className="actions">
+            <div className="actions">
                 <button className="delete" onClick={() => onDelete(place._id ? place._id : '')}>
                     Eliminar
                 </button>
                 <button className="update">
                     <Link to={`/addplace/${place._id}`}>Actualizar</Link>
                 </button>
-            </div> */}
+            </div>
             
             </div>
         </>
