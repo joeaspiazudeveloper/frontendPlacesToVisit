@@ -10,6 +10,18 @@
     }
 }
 
+.delete-place-dialog {
+    width: 400px;
+    height: 220px;
+}
+
+.delete-place-dialog-content__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+    margin-top: 10px;
+}
+
 .place-list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
