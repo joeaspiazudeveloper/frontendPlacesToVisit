@@ -20,17 +20,17 @@ function EtDialog({ isOpen, onClose, title, children, className, slideFrom = 'no
     const dialogElement = dialogRef.current;
     if (dialogElement) {
       if (isOpen) {
-        dialogElement.showModal(); // Opens the dialog modally
+        dialogElement.showModal();
       } else {
-        dialogElement.close(); // Closes the dialog
+        dialogElement.close();
       }
     }
-  }, [isOpen]); // Re-run when dialog's open state changes
+  }, [isOpen]);
 
   // Effect to handle the native 'close' event from the <dialog> element.
   useEffect(() => {
     const dialogElement = dialogRef.current;
-    const handleClose = () => onClose(); // Call the parent's onClose handler
+    const handleClose = () => onClose();
 
     if (dialogElement) {
       dialogElement.addEventListener('close', handleClose);
@@ -42,7 +42,7 @@ function EtDialog({ isOpen, onClose, title, children, className, slideFrom = 'no
         dialogElement.removeEventListener('close', handleClose);
       }
     };
-  }, [onClose]); // Re-run only if the onClose function reference changes
+  }, [onClose]);
 
   // body scrolling
   useEffect(() => {
@@ -80,7 +80,7 @@ function EtDialog({ isOpen, onClose, title, children, className, slideFrom = 'no
         {children}
       </div>
     </dialog>,
-    portalRoot // Specifies the DOM node where the portal content will be appended.
+    portalRoot
   );
 }
 
