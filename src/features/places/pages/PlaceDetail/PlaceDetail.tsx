@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { Place } from '../../types/PlaceType';
 
 import "./PlaceDetail.scss"

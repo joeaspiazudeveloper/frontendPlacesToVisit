@@ -8,7 +8,7 @@ import { placeValidationSchema } from '../../validations/placeValidationSchema';
 import "./AddEditPlace.scss";
 import { usePlacesContext } from '../../contexts/PlacesContext';
 import { toast } from 'react-toastify';
-import { Place } from '../../types/PlaceType'; // Asegúrate de que esta ruta sea correcta
+import { Place } from '../../types/PlaceType';
 
 type FormData = Place;
 

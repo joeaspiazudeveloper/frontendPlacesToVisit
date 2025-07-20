@@ -13,7 +13,6 @@ export default function PlaceItem({
     <>
       <div className="place" key={place._id}>
         <div className="image-container">
-          {/* Navigate to the specific place detail */}
           <Link to={`/places/${place._id}`}>
             <img
               src={place.imageUrl}
