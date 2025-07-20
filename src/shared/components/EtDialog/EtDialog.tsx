@@ -59,6 +59,21 @@ function EtDialog({ isOpen, onClose, title, children, className, slideFrom = 'no
     }
   }, [isOpen]);
 
+  // body scrolling
+  useEffect(() => {
+    const originOverflow = document.body.style.overflow;
+
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = originOverflow;
+    }
+
+    return () => {
+      document.body.style.overflow = originOverflow;
+    }
+  }, [isOpen]);
+
   // Do not render if the portal root is not found in the DOM.
   if (!portalRoot) {
     console.warn("Portal root element with ID 'dialog-root' not found. Dialog will not render.");

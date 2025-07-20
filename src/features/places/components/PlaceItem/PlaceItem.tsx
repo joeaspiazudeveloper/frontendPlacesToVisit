@@ -2,13 +2,7 @@ import { Link } from "react-router-dom";
 import { Place } from "../../types/PlaceType";
 import "./PlaceItem.scss";
 
-export default function PlaceItem({
-  place,
-  onDelete,
-}: {
-  place: Place;
-  onDelete: (placeId: string) => void;
-}) {
+export default function PlaceItem({ place, onDelete,}: {place: Place; onDelete: (placeId: string) => void;}) {
   return (
     <>
       <div className="place" key={place._id}>

@@ -1,5 +1,4 @@
 import { Place } from '../../types/PlaceType';
-
 import "./PlaceDetail.scss"
 
 function PlaceDetail({ place }: {place: Place}) {
