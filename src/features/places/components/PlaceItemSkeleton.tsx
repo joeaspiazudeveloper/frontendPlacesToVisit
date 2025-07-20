@@ -1,4 +1,3 @@
-import React from 'react';
 import AppSkeleton from '../../../shared/components/AppSkeleton';
 
 

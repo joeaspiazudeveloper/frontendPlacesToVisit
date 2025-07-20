@@ -18,7 +18,6 @@ export default function PlacesList() {
 
   const { id } = useParams<{ id?: string }>();
 
-  // State to hold the data for the place currently being viewed in the dialog
   const [selectedPlaceDetail, setSelectedPlaceDetail] = useState<Place | null>(
     null
   );
@@ -28,7 +27,6 @@ export default function PlacesList() {
   const [selectedPlaceToDelete, setSelectedPlaceToDelete] = useState<string>('');
   const [deleteLoading, setDeleteLoading] = useState(false);
 
-  // useEffect to fetch place detail whenever the 'id' in the URL changes
   useEffect(() => {
     if (id) {
       setDetailLoading(true);
@@ -48,10 +46,9 @@ export default function PlacesList() {
       };
       fetchPlaceDetail();
     } else {
-      // If no ID in URL (e.g., navigated back to /places), clear the selected place
       setSelectedPlaceDetail(null);
     }
-  }, [id, apiUrl]); // Depend on 'id' and 'apiUrl'
+  }, [id, apiUrl]);
 
   // Function to close the detail dialog
   const handleCloseDetailDialog = () => {

@@ -8,9 +8,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Place } from '../../types/PlaceType';
 
-// --- DECLARACIÓN GLOBAL PARA MOCKEAR import.meta.env ---
-// Esto le dice a TypeScript que `global` tendrá la propiedad `import.meta.env`
-// que normalmente Vite inyecta en el cliente.
+
 declare global {
   namespace NodeJS {
     interface Global {
@@ -25,8 +23,6 @@ declare global {
   }
 }
 
-// ********** CORRECCIÓN CLAVE: Mover la inicialización de global.import.meta.env aquí **********
-// Esto asegura que VITE_API_URL esté definida antes de que cualquier módulo que la use sea importado.
 (global as any).import = {
   meta: {
     env: {
@@ -34,9 +30,7 @@ declare global {
     },
   },
 };
-// ************************************************************************************************
 
-// --- MOCKS NECESARIOS ---
 
 // 1. Mock de react-router-dom
 jest.mock('react-router-dom', () => ({
