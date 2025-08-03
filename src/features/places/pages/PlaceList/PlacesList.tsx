@@ -12,7 +12,7 @@ import PlaceDetail from "../../pages/PlaceDetail/PlaceDetail";
 import { useEffect, useState } from "react";
 
 export default function PlacesList() {
-  const apiUrl = import.meta.env.VITE_API_URL;
+  const apiUrl = import.meta.env.VITE_API_URL + "/places";
   const { places, loading, error, removePlace, refetchPlaces } = usePlacesContext();
   const navigate = useNavigate();
 
