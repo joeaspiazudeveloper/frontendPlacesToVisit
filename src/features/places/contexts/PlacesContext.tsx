@@ -23,7 +23,7 @@ const PlacesContext = createContext<PlacesContextType>({
 });
 
 export const PlacesProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-    const apiUrl = import.meta.env.VITE_API_URL;
+    const apiUrl = import.meta.env.VITE_API_URL + '/places';
     const { places: fetchedPlaces, loading, error, fetchPlacesData, setPlaces: setFetchedPlaces } = FetchPlaces(apiUrl);
     const [places, setPlaces] = useState<Place[]>(fetchedPlaces);
 

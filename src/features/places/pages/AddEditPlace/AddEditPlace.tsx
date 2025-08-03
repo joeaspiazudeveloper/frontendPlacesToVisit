@@ -13,7 +13,7 @@ import { Place } from '../../types/PlaceType';
 type FormData = Place;
 
 export default function AddEditPlace() {
-  const apiUrl = import.meta.env.VITE_API_URL;
+  const apiUrl = import.meta.env.VITE_API_URL + '/places';
 
   const {
     register,
